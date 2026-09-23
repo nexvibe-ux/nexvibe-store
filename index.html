@@ -1,0 +1,1823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NEXVIBE — Discover trending products designed to make everyday life easier, smarter and more enjoyable.">
+  <meta name="theme-color" content="#080808">
+
+  <title>NEXVIBE — Trending Products, Better Living</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  >
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            inter: ["Inter", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background: #fafafa;
+      color: #111;
+    }
+
+    .glass {
+      background: rgba(255,255,255,.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .hero-gradient {
+      background:
+        radial-gradient(circle at 80% 20%, rgba(255,255,255,.16), transparent 28%),
+        radial-gradient(circle at 20% 80%, rgba(255,255,255,.08), transparent 25%),
+        linear-gradient(135deg, #050505 0%, #171717 50%, #080808 100%);
+    }
+
+    .product-card {
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 50px rgba(0,0,0,.10);
+    }
+
+    .btn {
+      transition: all .25s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn:active {
+      transform: scale(.97);
+    }
+
+    .product-image {
+      transition: transform .5s ease;
+    }
+
+    .product-card:hover .product-image {
+      transform: scale(1.04);
+    }
+
+    .star {
+      color: #f59e0b;
+    }
+
+    .review-card {
+      box-shadow: 0 10px 35px rgba(0,0,0,.05);
+    }
+
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    @media (max-width: 640px) {
+      .hero-title {
+        font-size: 2.6rem;
+        line-height: 1.04;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       TOP SHIPPING BAR
+  ========================== -->
+  <div class="bg-black text-white text-center text-xs sm:text-sm font-medium py-2.5 px-4 tracking-wide">
+    <i class="fa-solid fa-truck-fast mr-2"></i>
+    FREE WORLDWIDE SHIPPING — LIMITED TIME
+  </div>
+
+
+  <!-- =========================
+       NAVBAR
+  ========================== -->
+  <header class="sticky top-0 z-50 glass border-b border-gray-200/70">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between">
+
+      <a
+        href="#"
+        class="flex items-center gap-2"
+        aria-label="NEXVIBE Home"
+      >
+        <div class="w-9 h-9 rounded-xl bg-black text-white flex items-center justify-center">
+          <i class="fa-solid fa-bolt text-sm"></i>
+        </div>
+
+        <span class="text-xl font-extrabold tracking-tight">
+          NEXVIBE
+        </span>
+      </a>
+
+      <button
+        type="button"
+        onclick="openOrderModal('General Order')"
+        class="btn bg-black text-white text-sm font-semibold px-5 py-2.5 rounded-full shadow-sm"
+      >
+        Shop Now
+      </button>
+
+    </nav>
+  </header>
+
+
+  <main>
+
+    <!-- =========================
+         HERO
+    ========================== -->
+    <section class="hero-gradient text-white overflow-hidden">
+
+      <div class="max-w-7xl mx-auto px-5 sm:px-6 py-16 sm:py-24 lg:py-28">
+
+        <div class="max-w-3xl mx-auto text-center">
+
+          <div class="inline-flex items-center gap-2 bg-white/10 border border-white/15 rounded-full px-4 py-2 text-xs sm:text-sm font-medium mb-7">
+            <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+            Trending products people love
+          </div>
+
+          <h1 class="hero-title text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight">
+            Small Things.
+            <span class="text-gray-400">Big Difference.</span>
+          </h1>
+
+          <p class="mt-6 text-gray-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
+            Discover smart, useful and surprisingly satisfying products
+            designed to make everyday life easier, cleaner and better.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-3 justify-center mt-9">
+
+            <button
+              type="button"
+              onclick="openOrderModal('General Order')"
+              class="btn bg-white text-black font-bold px-7 py-3.5 rounded-full inline-flex items-center justify-center gap-2"
+            >
+              Shop Now
+              <i class="fa-solid fa-arrow-right text-sm"></i>
+            </button>
+
+            <a
+              href="#reviews"
+              class="btn border border-white/25 bg-white/5 text-white font-semibold px-7 py-3.5 rounded-full inline-flex items-center justify-center gap-2"
+            >
+              <i class="fa-regular fa-star"></i>
+              Customer Reviews
+            </a>
+
+          </div>
+
+          <div class="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-3 text-xs sm:text-sm text-gray-300">
+
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-shield-halved text-green-400"></i>
+              Secure Checkout
+            </div>
+
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-truck text-blue-400"></i>
+              Worldwide Shipping
+            </div>
+
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-rotate-left text-purple-400"></i>
+              30-Day Returns
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         BENEFIT STRIP
+    ========================== -->
+    <section class="bg-white border-b border-gray-100">
+
+      <div class="max-w-7xl mx-auto px-5 sm:px-6 py-6">
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center shrink-0">
+              <i class="fa-solid fa-truck-fast"></i>
+            </div>
+
+            <div>
+              <p class="text-sm font-bold">Free Shipping</p>
+              <p class="text-xs text-gray-500">Worldwide delivery</p>
+            </div>
+          </div>
+
+
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center shrink-0">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+
+            <div>
+              <p class="text-sm font-bold">Secure Payment</p>
+              <p class="text-xs text-gray-500">100% protected</p>
+            </div>
+          </div>
+
+
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center shrink-0">
+              <i class="fa-solid fa-rotate-left"></i>
+            </div>
+
+            <div>
+              <p class="text-sm font-bold">30-Day Returns</p>
+              <p class="text-xs text-gray-500">Shop with confidence</p>
+            </div>
+          </div>
+
+
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center shrink-0">
+              <i class="fa-solid fa-headset"></i>
+            </div>
+
+            <div>
+              <p class="text-sm font-bold">Friendly Support</p>
+              <p class="text-xs text-gray-500">We're here to help</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         PRODUCTS
+    ========================== -->
+    <section id="products" class="py-16 sm:py-20 bg-gray-50">
+
+      <div class="max-w-7xl mx-auto px-5 sm:px-6">
+
+        <div class="text-center max-w-2xl mx-auto mb-10">
+
+          <span class="text-xs font-bold uppercase tracking-[.18em] text-gray-500">
+            Trending Now
+          </span>
+
+          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mt-2">
+            Products Worth Talking About
+          </h2>
+
+          <p class="text-gray-500 mt-3 text-sm sm:text-base">
+            Carefully selected products that combine usefulness, style and everyday convenience.
+          </p>
+
+        </div>
+
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+
+          <!-- =========================
+               PRODUCT 1
+          ========================== -->
+          <article class="product-card bg-white rounded-3xl overflow-hidden border border-gray-100">
+
+            <div class="relative bg-gray-100 aspect-square overflow-hidden">
+
+              <span class="absolute top-4 left-4 z-10 bg-black text-white text-[11px] font-bold px-3 py-1.5 rounded-full">
+                BEST SELLER
+              </span>
+
+              <img
+                class="product-image w-full h-full object-cover"
+                src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=85"
+                alt="Cordless electric spin scrubber cleaning a bathroom"
+                loading="lazy"
+              >
+
+            </div>
+
+            <div class="p-5">
+
+              <div class="flex items-center gap-1 mb-3">
+                <i class="fa-solid fa-star star text-xs"></i>
+                <i class="fa-solid fa-star star text-xs"></i>
+                <i class="fa-solid fa-star star text-xs"></i>
+                <i class="fa-solid fa-star star text-xs"></i>
+                <i class="fa-solid fa-star star text-xs"></i>
+                <span class="text-xs text-gray-500 ml-1">(428)</span>
+              </div>
+
+              <span class="inline-block text-[11px] font-bold uppercase tracking-wide text-red-600 bg-red-50 px-2.5 py-1 rounded-full mb-3">
+                Trending — High Demand
+              </span>
+
+              <h3 class="font-extrabold text-xl leading-tight">
+                Make Stubborn Cleaning Feel Effortless
+              </h3>
+
+              <ul class="mt-4 space-y-3">
+
+                <li class="flex gap-2.5 text-sm text-gray-600 leading-relaxed">
+                  <i class="fa-solid fa-check text-green-600 mt-1 shrink-0"></i>
+                  <span>
+                    <strong class="text-gray-900">Less Scrubbing, More Results</strong> —
+                    Cut through built-up grime, soap scum and everyday mess without exhausting your hands.
+                  </span>
+                </li>
+
+                <li class="flex gap-2.5 text-sm text-gray-600 leading-relaxed">
+                  <i class="fa-solid fa-check text-green-600 mt-1 shrink-0"></i>
+                  <span>
+                    <strong class="text-gray-900">Reach the Hard-to-Reach Spots</strong> —
+                    Tackle tubs, tiles, sinks and awkward corners without constantly bending or stretching.
+                  </span>
+                </li>
+
+                <li class="flex gap-2.5 text-sm text-gray-600 leading-relaxed">
+                  <i class="fa-solid fa-check text-green-600 mt-1 shrink-0"></i>
+                  <span>
+                    <strong class="text-gray-900">Turn a Chore Into a Quick Clean</strong> —
+                    Go cordless and move freely around your home without wrestling with a power cord.
+                  </span>
+                </li>
+
+              </ul>
+
+              <div class="flex items-end gap-2 mt-5">
+                <span class="text-2xl font-extrabold">$24.99</span>
+                <span class="text-sm text-gray-400 line-through mb-1">$49.99</span>
+                <span class="text-xs font-bold text-green-600 mb-1">50% OFF</span>
+              </div>
+
+              <button
+                type="button"
+                onclick="orderProduct('Cordless Electric Spin Scrubber')"
+                class="btn w-full mt-5 bg-black text-white py-3.5 rounded-full font-bold text-sm flex items-center justify-center gap-2"
+              >
+                Order Now
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+
+            </div>
+
+          </article>
+
+
+          <!-- =========================
+               PRODUCT 2
+          ========================== -->
+          <article class="product-card bg-white rounded-3xl overflow-hidden border border-gray-100">
+
+            <div class="relative bg-gray-100 aspect-square overflow-hidden">
+
+              <span class="absolute top-4 left-4 z-10 bg-white text-black text-[11px] font-bold px-3 py-1.5 rounded-full shadow-sm">
+                TRENDING
+              </span>
+
+              <img
+                class="product-image w-full h-full object-cover"
+                src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=900&q=85"
+                alt="Dog representing the LED ultrasonic anti-barking device"
+                loading="lazy"
+              >
+
+            </div>
+
+            <div class="p-5">
+
+              <div class="flex items-center gap-1 mb-3">
+                <i class="fa-solid fa-star star text-xs"></i>
+                <i class="fa-solid fa-star star text-xs"></i>
+                <i class="fa-solid fa-star star text-xs"></i>
+                <i class="fa-solid fa-star star text-xs"></i>
+                <i class="fa-solid fa-star star text-xs"></i>
+                <span class="text-xs text-gray-500 ml-1">(317)</span>
+              </div>
+
+              <span class="inline-block text-[11px] font-bold uppercase tracking-wide text-red-600 bg-red-50 px-2.5 py-1 rounded-full mb-3">
+                Pet Owners Are Loving This
+              </span>
+
+              <h3 class="font-extrabold text-xl leading-tight">
+                A Quieter Home Without Constant Shouting
+              </h3>
+
+              <ul class="mt-4 space-y-3">
+
+                <li class="flex gap-2.5 text-sm text-gray-600 leading-relaxed">
+                  <i class="fa-solid fa-check text-green-600 mt-1 shrink-0"></i>
+                  <span>
+                    <strong class="text-gray-900">Help Interrupt Unwanted Barking</strong> —
+                    Designed to provide a gentle training cue when excessive barking becomes disruptive.
+                  </span>
+                </li>
+
+                <li class="flex gap-2.5 text-sm text-gray-600 leading-relaxed">
+                  <i class="fa-solid fa-check text-green-600 mt-1 shrink-0"></i>
+                  <span>
+                    <strong class="text-gray-900">Enjoy More Peace at Home</strong> —
+                    Reduce those frustrating barking interruptions around the house, yard or walks.
+                  </span>
+                </li>
+
+                <li class="flex gap-2.5 text-sm text-gray-600 leading-relaxed">
+                  <i class="fa-solid fa-check text-green-600 mt-1 shrink-0"></i>
+                  <span>
+                    <strong class="text-gray-900">Train With Less Stress</strong> —
+                    A simple, convenient tool for owners looking for a more controlled training routine.
+                  </span>
+                </li>
+
+              </ul>
+
+              <div class="flex items-end gap-2 mt-5">
+                <span class="text-2xl font-extrabold">$19.99</span>
+                <span class="text-sm text-gray-400 line-through mb-1">$39.99</span>
+                <span class="text-xs font-bold text-green-600 mb-1">50% OFF</span>
+              </div>
+
+              <button
+                type="button"
+                onclick="orderProduct('LED Ultrasonic Dog Anti-Barking Device')"
+                class="btn w-full mt-5 bg-black text-white py-3.5 rounded-full font-bold text-sm flex items-center justify-center gap-2"
+              >
+                Order Now
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+
+            </div>
+
+          </article>
+
+
+          <!-- =========================
+               PRODUCT 3
+          ========================== -->
+          <article class="product-card bg-white rounded-3xl overflow-hidden border border-gray-100">
+
+            <div class="relative bg-gray-100 aspect-square overflow-hidden">
+
+              <span class="absolute top-4 left-4 z-10 bg-black text-white text-[11px] font-bold px-3 py-1.5 rounded-full">
+                VIRAL PICK
+              </span>
+
+              <img
+                class="product-image w-full h-full object-cover"
+                src="https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=900&q=85"
+                alt="Ambient sunset style room lighting"
+                loading="lazy"
+              >
+
+            </div>
+
+            <div class="p-5">
+
+              <div class="flex items-center gap-1 mb-3">
+                <i class="fa-solid fa-star star text-xs"></i>
+                <i class="fa-solid fa-star star text-xs"></i>
+                <i class="fa-solid fa-star star text-xs"></i>
+                <i class="fa-solid fa-star star text-xs"></i>
+                <i class="fa-solid fa-star star text-xs"></i>
+                <span class="text-xs text-gray-500 ml-1">(562)</span>
+              </div>
+
+              <span class="inline-block text-[11px] font-bold uppercase tracking-wide text-purple-600 bg-purple-50 px-2.5 py-1 rounded-full mb-3">
+                Viral Home Décor Pick
+              </span>
+
+              <h3 class="font-extrabold text-xl leading-tight">
+                Turn Any Room Into Your Favorite Place
+              </h3>
+
+              <ul class="mt-4 space-y-3">
+
+                <li class="flex gap-2.5 text-sm text-gray-600 leading-relaxed">
+                  <i class="fa-solid fa-check text-green-600 mt-1 shrink-0"></i>
+                  <span>
+                    <strong class="text-gray-900">Instantly Transform Your Space</strong> —
+                    Fill your room with warm sunset and galaxy-inspired lighting for an atmosphere that feels completely different.
+                  </span>
+                </li>
+
+                <li class="flex gap-2.5 text-sm text-gray-600 leading-relaxed">
+                  <i class="fa-solid fa-check text-green-600 mt-1 shrink-0"></i>
+                  <span>
+                    <strong class="text-gray-900">Make Ordinary Evenings Feel Special</strong> —
+                    Create a relaxing backdrop for movie nights, music, gaming, dates or winding down.
+                  </span>
+                </li>
+
+                <li class="flex gap-2.5 text-sm text-gray-600 leading-relaxed">
+                  <i class="fa-solid fa-check text-green-600 mt-1 shrink-0"></i>
+                  <span>
+                    <strong class="text-gray-900">Give Your Camera a Glow-Up</strong> —
+                    Add an eye-catching background for TikToks, Reels, photos and video calls without complicated setup.
+                  </span>
+                </li>
+
+              </ul>
+
+              <div class="flex items-end gap-2 mt-5">
+                <span class="text-2xl font-extrabold">$22.99</span>
+                <span class="text-sm text-gray-400 line-through mb-1">$44.99</span>
+                <span class="text-xs font-bold text-green-600 mb-1">49% OFF</span>
+              </div>
+
+              <button
+                type="button"
+                onclick="orderProduct('Sunset Lamp Galaxy Projector')"
+                class="btn w-full mt-5 bg-black text-white py-3.5 rounded-full font-bold text-sm flex items-center justify-center gap-2"
+              >
+                Order Now
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+
+            </div>
+
+          </article>
+
+        </div>
+
+
+        <div class="text-center mt-10">
+
+          <div class="inline-flex flex-wrap justify-center items-center gap-2 text-sm text-gray-500">
+
+            <div class="flex -space-x-2">
+              <div class="w-7 h-7 rounded-full bg-gray-300 border-2 border-white"></div>
+              <div class="w-7 h-7 rounded-full bg-gray-400 border-2 border-white"></div>
+              <div class="w-7 h-7 rounded-full bg-gray-500 border-2 border-white"></div>
+              <div class="w-7 h-7 rounded-full bg-gray-600 border-2 border-white"></div>
+            </div>
+
+            <span>
+              <strong class="text-gray-900">10,000+</strong> happy customers
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         WHY NEXVIBE
+    ========================== -->
+    <section class="bg-white py-16 sm:py-20">
+
+      <div class="max-w-7xl mx-auto px-5 sm:px-6">
+
+        <div class="max-w-2xl mx-auto text-center mb-10">
+
+          <span class="text-xs font-bold uppercase tracking-[.18em] text-gray-500">
+            Why NEXVIBE
+          </span>
+
+          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mt-2">
+            Shop With Confidence
+          </h2>
+
+        </div>
+
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 max-w-4xl mx-auto">
+
+          <div class="text-center p-7 rounded-3xl bg-gray-50 border border-gray-100">
+
+            <div class="w-14 h-14 mx-auto rounded-2xl bg-black text-white flex items-center justify-center">
+              <i class="fa-solid fa-lock text-lg"></i>
+            </div>
+
+            <h3 class="font-bold mt-5">Secure Checkout</h3>
+
+            <p class="text-gray-500 text-sm mt-2 leading-relaxed">
+              Your payment information is protected with secure checkout technology.
+            </p>
+
+          </div>
+
+
+          <div class="text-center p-7 rounded-3xl bg-gray-50 border border-gray-100">
+
+            <div class="w-14 h-14 mx-auto rounded-2xl bg-black text-white flex items-center justify-center">
+              <i class="fa-solid fa-rotate-left text-lg"></i>
+            </div>
+
+            <h3 class="font-bold mt-5">30-Day Money Back</h3>
+
+            <p class="text-gray-500 text-sm mt-2 leading-relaxed">
+              Not satisfied? Our 30-day return promise makes shopping stress-free.
+            </p>
+
+          </div>
+
+
+          <div class="text-center p-7 rounded-3xl bg-gray-50 border border-gray-100">
+
+            <div class="w-14 h-14 mx-auto rounded-2xl bg-black text-white flex items-center justify-center">
+              <i class="fa-solid fa-earth-americas text-lg"></i>
+            </div>
+
+            <h3 class="font-bold mt-5">Worldwide Delivery</h3>
+
+            <p class="text-gray-500 text-sm mt-2 leading-relaxed">
+              We make it easy to discover useful products from almost anywhere.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         REVIEWS
+    ========================== -->
+    <section id="reviews" class="py-16 sm:py-20 bg-gray-50">
+
+      <div class="max-w-7xl mx-auto px-5 sm:px-6">
+
+        <div class="text-center max-w-2xl mx-auto mb-10">
+
+          <span class="text-xs font-bold uppercase tracking-[.18em] text-gray-500">
+            Customer Love
+          </span>
+
+          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mt-2">
+            Loved By Thousands
+          </h2>
+
+          <div class="flex justify-center items-center gap-2 mt-4">
+
+            <div class="flex gap-1">
+              <i class="fa-solid fa-star star"></i>
+              <i class="fa-solid fa-star star"></i>
+              <i class="fa-solid fa-star star"></i>
+              <i class="fa-solid fa-star star"></i>
+              <i class="fa-solid fa-star star"></i>
+            </div>
+
+            <span class="text-sm font-semibold">
+              4.9/5
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="flex overflow-x-auto scrollbar-hide gap-5 snap-x snap-mandatory pb-3 md:grid md:grid-cols-3 md:overflow-visible">
+
+
+          <article class="review-card bg-white rounded-3xl p-6 min-w-[85%] sm:min-w-[60%] md:min-w-0 snap-start">
+
+            <div class="flex gap-1 mb-4">
+              <i class="fa-solid fa-star star text-sm"></i>
+              <i class="fa-solid fa-star star text-sm"></i>
+              <i class="fa-solid fa-star star text-sm"></i>
+              <i class="fa-solid fa-star star text-sm"></i>
+              <i class="fa-solid fa-star star text-sm"></i>
+            </div>
+
+            <p class="text-gray-700 text-sm leading-relaxed">
+              “I honestly didn't expect much, but this turned out to be one of my favorite little purchases. The quality is much better than I expected.”
+            </p>
+
+            <div class="flex items-center gap-3 mt-6">
+
+              <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center font-bold">
+                JM
+              </div>
+
+              <div>
+                <p class="text-sm font-bold">Jessica M.</p>
+                <p class="text-xs text-gray-500">California, USA</p>
+              </div>
+
+              <i class="fa-solid fa-circle-check text-green-500 ml-auto"></i>
+
+            </div>
+
+          </article>
+
+
+          <article class="review-card bg-white rounded-3xl p-6 min-w-[85%] sm:min-w-[60%] md:min-w-0 snap-start">
+
+            <div class="flex gap-1 mb-4">
+              <i class="fa-solid fa-star star text-sm"></i>
+              <i class="fa-solid fa-star star text-sm"></i>
+              <i class="fa-solid fa-star star text-sm"></i>
+              <i class="fa-solid fa-star star text-sm"></i>
+              <i class="fa-solid fa-star star text-sm"></i>
+            </div>
+
+            <p class="text-gray-700 text-sm leading-relaxed">
+              “Super easy ordering experience and the product is exactly what I needed. Shipping was smooth and customer service was helpful.”
+            </p>
+
+            <div class="flex items-center gap-3 mt-6">
+
+              <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center font-bold">
+                DT
+              </div>
+
+              <div>
+                <p class="text-sm font-bold">Daniel T.</p>
+                <p class="text-xs text-gray-500">Texas, USA</p>
+              </div>
+
+              <i class="fa-solid fa-circle-check text-green-500 ml-auto"></i>
+
+            </div>
+
+          </article>
+
+
+          <article class="review-card bg-white rounded-3xl p-6 min-w-[85%] sm:min-w-[60%] md:min-w-0 snap-start">
+
+            <div class="flex gap-1 mb-4">
+              <i class="fa-solid fa-star star text-sm"></i>
+              <i class="fa-solid fa-star star text-sm"></i>
+              <i class="fa-solid fa-star star text-sm"></i>
+              <i class="fa-solid fa-star star text-sm"></i>
+              <i class="fa-solid fa-star star text-sm"></i>
+            </div>
+
+            <p class="text-gray-700 text-sm leading-relaxed">
+              “Great find! It arrived nicely packaged and works just as described. I've already recommended NEXVIBE to a couple of friends.”
+            </p>
+
+            <div class="flex items-center gap-3 mt-6">
+
+              <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center font-bold">
+                AS
+              </div>
+
+              <div>
+                <p class="text-sm font-bold">Amanda S.</p>
+                <p class="text-xs text-gray-500">New York, USA</p>
+              </div>
+
+              <i class="fa-solid fa-circle-check text-green-500 ml-auto"></i>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         FINAL CTA
+    ========================== -->
+    <section class="bg-black text-white py-16 sm:py-20">
+
+      <div class="max-w-3xl mx-auto px-5 text-center">
+
+        <div class="w-14 h-14 mx-auto rounded-2xl bg-white text-black flex items-center justify-center mb-6">
+          <i class="fa-solid fa-bolt"></i>
+        </div>
+
+        <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight">
+          Find Your Next Favorite Thing.
+        </h2>
+
+        <p class="text-gray-400 mt-4 text-sm sm:text-base leading-relaxed">
+          Discover useful, clever and trending products before everyone else does.
+        </p>
+
+        <button
+          type="button"
+          onclick="openOrderModal('General Order')"
+          class="btn mt-8 inline-flex items-center justify-center gap-2 bg-white text-black px-7 py-3.5 rounded-full font-bold"
+        >
+          Shop Trending Products
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+  <footer class="bg-[#080808] text-white border-t border-white/10">
+
+    <div class="max-w-7xl mx-auto px-5 sm:px-6 py-12">
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+
+
+        <div class="lg:col-span-2">
+
+          <div class="flex items-center gap-2">
+
+            <div class="w-9 h-9 rounded-xl bg-white text-black flex items-center justify-center">
+              <i class="fa-solid fa-bolt text-sm"></i>
+            </div>
+
+            <span class="text-xl font-extrabold tracking-tight">
+              NEXVIBE
+            </span>
+
+          </div>
+
+          <p class="text-gray-500 text-sm leading-relaxed mt-4 max-w-sm">
+            Discover products that make everyday life a little smarter,
+            easier and more enjoyable.
+          </p>
+
+          <div class="flex items-center gap-3 mt-6">
+
+            <a
+              href="#"
+              aria-label="Instagram"
+              class="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition"
+            >
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+
+            <a
+              href="#"
+              aria-label="Facebook"
+              class="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition"
+            >
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+
+            <a
+              href="#"
+              aria-label="TikTok"
+              class="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition"
+            >
+              <i class="fa-brands fa-tiktok"></i>
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div>
+
+          <h3 class="font-bold text-sm mb-4">
+            Shop
+          </h3>
+
+          <ul class="space-y-3 text-sm text-gray-500">
+
+            <li>
+              <a href="#products" class="hover:text-white transition">
+                Trending Products
+              </a>
+            </li>
+
+            <li>
+              <a href="#products" class="hover:text-white transition">
+                Best Sellers
+              </a>
+            </li>
+
+            <li>
+              <a href="#reviews" class="hover:text-white transition">
+                Customer Reviews
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+
+        <div>
+
+          <h3 class="font-bold text-sm mb-4">
+            Policies
+          </h3>
+
+          <ul class="space-y-3 text-sm text-gray-500">
+
+            <li>
+              <a href="privacy-policy.html" class="hover:text-white transition">
+                Privacy Policy
+              </a>
+            </li>
+
+            <li>
+              <a href="refund-policy.html" class="hover:text-white transition">
+                Refund Policy
+              </a>
+            </li>
+
+            <li>
+              <a href="shipping-policy.html" class="hover:text-white transition">
+                Shipping Policy
+              </a>
+            </li>
+
+            <li>
+              <a href="terms.html" class="hover:text-white transition">
+                Terms of Service
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+
+      <div class="border-t border-white/10 mt-10 pt-6 flex flex-col sm:flex-row gap-3 justify-between items-center">
+
+        <p class="text-xs text-gray-600">
+          © 2026 NEXVIBE. All rights reserved.
+        </p>
+
+        <div class="flex items-center gap-2 text-gray-600 text-xs">
+          <i class="fa-solid fa-lock"></i>
+          Secure shopping experience
+        </div>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =========================
+       ORDER FORM MODAL
+  ========================== -->
+  <div
+    id="orderModal"
+    class="fixed inset-0 z-[100] hidden items-center justify-center p-4"
+    aria-hidden="true"
+  >
+
+    <!-- Modal Backdrop -->
+    <div
+      id="modalBackdrop"
+      class="absolute inset-0 bg-black/70 backdrop-blur-sm opacity-0 transition-opacity duration-300"
+    ></div>
+
+
+    <!-- Modal Panel -->
+    <div
+      id="modalPanel"
+      class="relative w-full max-w-lg max-h-[92vh] overflow-y-auto bg-white rounded-3xl shadow-2xl translate-y-8 scale-95 opacity-0 transition-all duration-300"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="orderModalTitle"
+    >
+
+      <!-- Modal Header -->
+      <div class="sticky top-0 z-10 bg-white/95 backdrop-blur border-b border-gray-100 px-5 sm:px-6 py-4 flex items-center justify-between">
+
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-gray-500">
+            Secure Order
+          </p>
+
+          <h2
+            id="orderModalTitle"
+            class="text-xl sm:text-2xl font-extrabold mt-1"
+          >
+            Complete Your Order
+          </h2>
+        </div>
+
+
+        <button
+          type="button"
+          id="closeOrderModal"
+          aria-label="Close order form"
+          class="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+      </div>
+
+
+      <!--
+        FORM SUBMISSION SETUP
+
+        IMPORTANT:
+        Replace the action URL below with your actual Formspree endpoint
+        when you are ready to receive real orders.
+
+        Example:
+        action="https://formspree.io/f/YOUR_FORM_ID"
+
+        The current value is intentionally:
+        https://formspree.io
+      -->
+
+      <form
+        id="orderForm"
+        action="https://formspree.io/f/meaoklvy"
+        method="POST"
+        class="p-5 sm:p-6"
+        novalidate
+      >
+
+        <!-- Selected Product -->
+        <input
+          type="hidden"
+          id="selectedProduct"
+          name="Product"
+          value=""
+        >
+
+
+        <!-- Full Name -->
+        <div class="mb-4">
+
+          <label
+            for="fullName"
+            class="block text-sm font-semibold text-gray-800 mb-2"
+          >
+            Full Name
+          </label>
+
+          <div class="relative">
+
+            <i class="fa-regular fa-user absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+
+            <input
+              type="text"
+              id="fullName"
+              name="Full Name"
+              autocomplete="name"
+              placeholder="John Smith"
+              required
+              class="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-gray-200 outline-none focus:border-black focus:ring-2 focus:ring-black/5 transition text-sm"
+            >
+
+          </div>
+
+          <p
+            id="fullNameError"
+            class="hidden text-xs text-red-500 mt-1.5"
+          ></p>
+
+        </div>
+
+
+        <!-- Email -->
+        <div class="mb-4">
+
+          <label
+            for="email"
+            class="block text-sm font-semibold text-gray-800 mb-2"
+          >
+            Email Address
+          </label>
+
+          <div class="relative">
+
+            <i class="fa-regular fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+
+            <input
+              type="email"
+              id="email"
+              name="Email"
+              autocomplete="email"
+              placeholder="john@example.com"
+              required
+              class="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-gray-200 outline-none focus:border-black focus:ring-2 focus:ring-black/5 transition text-sm"
+            >
+
+          </div>
+
+          <p
+            id="emailError"
+            class="hidden text-xs text-red-500 mt-1.5"
+          ></p>
+
+        </div>
+
+
+        <!-- Street Address -->
+        <div class="mb-4">
+
+          <label
+            for="address"
+            class="block text-sm font-semibold text-gray-800 mb-2"
+          >
+            Shipping Address
+          </label>
+
+          <div class="relative">
+
+            <i class="fa-solid fa-location-dot absolute left-4 top-4 text-gray-400"></i>
+
+            <textarea
+              id="address"
+              name="Shipping Address"
+              autocomplete="street-address"
+              rows="3"
+              placeholder="Street address, apartment, etc."
+              required
+              class="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-gray-200 outline-none focus:border-black focus:ring-2 focus:ring-black/5 transition text-sm resize-none"
+            ></textarea>
+
+          </div>
+
+          <p
+            id="addressError"
+            class="hidden text-xs text-red-500 mt-1.5"
+          ></p>
+
+        </div>
+
+
+        <!-- City + State -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+
+          <div>
+
+            <label
+              for="city"
+              class="block text-sm font-semibold text-gray-800 mb-2"
+            >
+              City
+            </label>
+
+            <input
+              type="text"
+              id="city"
+              name="City"
+              autocomplete="address-level2"
+              placeholder="Los Angeles"
+              required
+              class="w-full px-4 py-3.5 rounded-2xl border border-gray-200 outline-none focus:border-black focus:ring-2 focus:ring-black/5 transition text-sm"
+            >
+
+            <p
+              id="cityError"
+              class="hidden text-xs text-red-500 mt-1.5"
+            ></p>
+
+          </div>
+
+
+          <div>
+
+            <label
+              for="state"
+              class="block text-sm font-semibold text-gray-800 mb-2"
+            >
+              State / Province
+            </label>
+
+            <input
+              type="text"
+              id="state"
+              name="State / Province"
+              autocomplete="address-level1"
+              placeholder="California"
+              required
+              class="w-full px-4 py-3.5 rounded-2xl border border-gray-200 outline-none focus:border-black focus:ring-2 focus:ring-black/5 transition text-sm"
+            >
+
+            <p
+              id="stateError"
+              class="hidden text-xs text-red-500 mt-1.5"
+            ></p>
+
+          </div>
+
+        </div>
+
+
+        <!-- ZIP + Country -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+
+          <div>
+
+            <label
+              for="zip"
+              class="block text-sm font-semibold text-gray-800 mb-2"
+            >
+              ZIP / Postal Code
+            </label>
+
+            <input
+              type="text"
+              id="zip"
+              name="ZIP / Postal Code"
+              autocomplete="postal-code"
+              placeholder="90001"
+              required
+              class="w-full px-4 py-3.5 rounded-2xl border border-gray-200 outline-none focus:border-black focus:ring-2 focus:ring-black/5 transition text-sm"
+            >
+
+            <p
+              id="zipError"
+              class="hidden text-xs text-red-500 mt-1.5"
+            ></p>
+
+          </div>
+
+
+          <div>
+
+            <label
+              for="country"
+              class="block text-sm font-semibold text-gray-800 mb-2"
+            >
+              Country
+            </label>
+
+            <select
+              id="country"
+              name="Country"
+              autocomplete="country-name"
+              required
+              class="w-full px-4 py-3.5 rounded-2xl border border-gray-200 outline-none focus:border-black focus:ring-2 focus:ring-black/5 transition text-sm bg-white"
+            >
+              <option value="">Select country</option>
+              <option value="USA">USA</option>
+              <option value="UK">UK</option>
+              <option value="Canada">Canada</option>
+              <option value="Australia">Australia</option>
+            </select>
+
+            <p
+              id="countryError"
+              class="hidden text-xs text-red-500 mt-1.5"
+            ></p>
+
+          </div>
+
+        </div>
+
+
+        <!-- Phone -->
+        <div class="mb-5">
+
+          <label
+            for="phone"
+            class="block text-sm font-semibold text-gray-800 mb-2"
+          >
+            Phone Number
+          </label>
+
+          <div class="relative">
+
+            <i class="fa-solid fa-phone absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+
+            <input
+              type="tel"
+              id="phone"
+              name="Phone Number"
+              autocomplete="tel"
+              inputmode="tel"
+              placeholder="+1 555 123 4567"
+              required
+              class="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-gray-200 outline-none focus:border-black focus:ring-2 focus:ring-black/5 transition text-sm"
+            >
+
+          </div>
+
+          <p
+            id="phoneError"
+            class="hidden text-xs text-red-500 mt-1.5"
+          ></p>
+
+        </div>
+
+
+        <!-- Privacy / Security Message -->
+        <div class="flex gap-3 bg-gray-50 rounded-2xl p-4 mb-5">
+
+          <i class="fa-solid fa-shield-halved text-green-600 mt-0.5"></i>
+
+          <p class="text-xs text-gray-500 leading-relaxed">
+            Your information is used only to process your order and arrange delivery.
+          </p>
+
+        </div>
+
+
+        <!-- Submit Button -->
+        <button
+          type="submit"
+          id="submitOrderButton"
+          class="btn w-full bg-black text-white py-4 rounded-full font-bold text-sm flex items-center justify-center gap-2"
+        >
+          <i class="fa-solid fa-lock text-xs"></i>
+          Submit Order
+        </button>
+
+        <p class="text-center text-[11px] text-gray-400 mt-3">
+          Secure order form • Free worldwide shipping
+        </p>
+
+      </form>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       ORDER MODAL SYSTEM
+  ========================== -->
+  <script>
+
+    const orderModal = document.getElementById("orderModal");
+    const modalBackdrop = document.getElementById("modalBackdrop");
+    const modalPanel = document.getElementById("modalPanel");
+    const closeOrderModalButton = document.getElementById("closeOrderModal");
+    const orderForm = document.getElementById("orderForm");
+    const selectedProduct = document.getElementById("selectedProduct");
+
+    let lastFocusedElement = null;
+
+
+    /* =========================
+       OPEN MODAL
+    ========================== */
+
+    function openOrderModal(productName = "General Order") {
+
+      lastFocusedElement = document.activeElement;
+
+      selectedProduct.value = productName;
+
+      orderModal.classList.remove("hidden");
+      orderModal.classList.add("flex");
+
+      orderModal.setAttribute("aria-hidden", "false");
+
+      document.body.classList.add("overflow-hidden");
+
+      requestAnimationFrame(() => {
+
+        modalBackdrop.classList.remove("opacity-0");
+        modalBackdrop.classList.add("opacity-100");
+
+        modalPanel.classList.remove(
+          "opacity-0",
+          "translate-y-8",
+          "scale-95"
+        );
+
+        modalPanel.classList.add(
+          "opacity-100",
+          "translate-y-0",
+          "scale-100"
+        );
+
+      });
+
+      setTimeout(() => {
+
+        const nameInput = document.getElementById("fullName");
+
+        if (nameInput) {
+          nameInput.focus();
+        }
+
+      }, 350);
+
+    }
+
+
+    /* =========================
+       CLOSE MODAL
+    ========================== */
+
+    function closeOrderModal() {
+
+      modalBackdrop.classList.remove("opacity-100");
+      modalBackdrop.classList.add("opacity-0");
+
+      modalPanel.classList.remove(
+        "opacity-100",
+        "translate-y-0",
+        "scale-100"
+      );
+
+      modalPanel.classList.add(
+        "opacity-0",
+        "translate-y-8",
+        "scale-95"
+      );
+
+      orderModal.setAttribute("aria-hidden", "true");
+
+      document.body.classList.remove("overflow-hidden");
+
+      setTimeout(() => {
+
+        orderModal.classList.remove("flex");
+        orderModal.classList.add("hidden");
+
+        if (lastFocusedElement) {
+          lastFocusedElement.focus();
+        }
+
+      }, 300);
+
+    }
+
+
+    /* =========================
+       PRODUCT BUTTON HANDLER
+    ========================== */
+
+    function orderProduct(productName) {
+      openOrderModal(productName);
+    }
+
+
+    /* =========================
+       CLOSE BUTTON
+    ========================== */
+
+    closeOrderModalButton.addEventListener(
+      "click",
+      closeOrderModal
+    );
+
+
+    /* =========================
+       BACKDROP CLOSE
+    ========================== */
+
+    modalBackdrop.addEventListener(
+      "click",
+      closeOrderModal
+    );
+
+
+    /* =========================
+       ESCAPE KEY
+    ========================== */
+
+    document.addEventListener("keydown", function(event) {
+
+      if (
+        event.key === "Escape" &&
+        !orderModal.classList.contains("hidden")
+      ) {
+
+        closeOrderModal();
+
+      }
+
+    });
+
+
+    /* =========================
+       FORM ERROR FUNCTIONS
+    ========================== */
+
+    function showError(fieldId, message) {
+
+      const errorElement =
+        document.getElementById(fieldId + "Error");
+
+      if (!errorElement) {
+        return;
+      }
+
+      errorElement.textContent = message;
+      errorElement.classList.remove("hidden");
+
+    }
+
+
+    function clearError(fieldId) {
+
+      const errorElement =
+        document.getElementById(fieldId + "Error");
+
+      if (!errorElement) {
+        return;
+      }
+
+      errorElement.textContent = "";
+      errorElement.classList.add("hidden");
+
+    }
+
+
+    /* =========================
+       FORM VALIDATION
+    ========================== */
+
+    function validateOrderForm() {
+
+      let isValid = true;
+
+      const fullName =
+        document.getElementById("fullName").value.trim();
+
+      const email =
+        document.getElementById("email").value.trim();
+
+      const address =
+        document.getElementById("address").value.trim();
+
+      const city =
+        document.getElementById("city").value.trim();
+
+      const state =
+        document.getElementById("state").value.trim();
+
+      const zip =
+        document.getElementById("zip").value.trim();
+
+      const country =
+        document.getElementById("country").value;
+
+      const phone =
+        document.getElementById("phone").value.trim();
+
+
+      const fields = [
+        "fullName",
+        "email",
+        "address",
+        "city",
+        "state",
+        "zip",
+        "country",
+        "phone"
+      ];
+
+      fields.forEach(clearError);
+
+
+      /* Full Name */
+
+      if (fullName.length < 2) {
+
+        showError(
+          "fullName",
+          "Please enter your full name."
+        );
+
+        isValid = false;
+
+      }
+
+
+      /* Email */
+
+      const emailPattern =
+        /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+      if (!emailPattern.test(email)) {
+
+        showError(
+          "email",
+          "Please enter a valid email address."
+        );
+
+        isValid = false;
+
+      }
+
+
+      /* Address */
+
+      if (address.length < 5) {
+
+        showError(
+          "address",
+          "Please enter your complete street address."
+        );
+
+        isValid = false;
+
+      }
+
+
+      /* City */
+
+      if (city.length < 2) {
+
+        showError(
+          "city",
+          "Please enter your city."
+        );
+
+        isValid = false;
+
+      }
+
+
+      /* State */
+
+      if (state.length < 2) {
+
+        showError(
+          "state",
+          "Please enter your state or province."
+        );
+
+        isValid = false;
+
+      }
+
+
+      /* ZIP */
+
+      if (zip.length < 3) {
+
+        showError(
+          "zip",
+          "Please enter a valid ZIP or postal code."
+        );
+
+        isValid = false;
+
+      }
+
+
+      /* Country */
+
+      if (!country) {
+
+        showError(
+          "country",
+          "Please select your country."
+        );
+
+        isValid = false;
+
+      }
+
+
+      /* Phone */
+
+      const phoneDigits =
+        phone.replace(/\D/g, "");
+
+      if (phoneDigits.length < 7) {
+
+        showError(
+          "phone",
+          "Please enter a valid phone number."
+        );
+
+        isValid = false;
+
+      }
+
+
+      return isValid;
+
+    }
+
+
+    /* =========================
+       FORM SUBMISSION
+    ========================== */
+
+    orderForm.addEventListener("submit", function(event) {
+
+      if (!validateOrderForm()) {
+
+        event.preventDefault();
+
+        return;
+
+      }
+
+
+      const submitButton =
+        document.getElementById("submitOrderButton");
+
+      submitButton.disabled = true;
+
+      submitButton.innerHTML = `
+        <i class="fa-solid fa-spinner fa-spin"></i>
+        Processing...
+      `;
+
+    });
+
+
+    /* =========================
+       LIVE ERROR CLEARING
+    ========================== */
+
+    [
+      "fullName",
+      "email",
+      "address",
+      "city",
+      "state",
+      "zip",
+      "country",
+      "phone"
+    ].forEach(fieldId => {
+
+      const field =
+        document.getElementById(fieldId);
+
+      if (!field) {
+        return;
+      }
+
+      field.addEventListener("input", function() {
+        clearError(fieldId);
+      });
+
+      field.addEventListener("change", function() {
+        clearError(fieldId);
+      });
+
+    });
+
+
+    /* =========================
+       HOME LINK
+    ========================== */
+
+    document.querySelectorAll('a[href="#"]').forEach(link => {
+
+      link.addEventListener("click", function(event) {
+
+        event.preventDefault();
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+
+      });
+
+    });
+
+  </script>
+
+</body>
+</html>
