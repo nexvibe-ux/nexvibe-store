@@ -3,34 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="NEXVIBE — Discover trending products designed to make everyday life easier, smarter and more enjoyable.">
-  <meta name="theme-color" content="#080808">
-
-  <title>NEXVIBE — Trending Products, Better Living</title>
-
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Font Awesome -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-  >
+  <meta name="theme-color" content="#050505">
+  <meta name="description" content="NEXVIBE — Technology, thoughtfully curated.">
+  <title>NEXVIBE — Curating the Future of Everyday Living.</title>
 
   <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  >
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            inter: ["Inter", "sans-serif"]
+            sans: ['Plus Jakarta Sans', 'sans-serif']
           }
         }
       }
@@ -38,79 +34,414 @@
   </script>
 
   <style>
+    :root {
+      --black: #050505;
+      --near-black: #090909;
+      --white: #ffffff;
+      --zinc-50: #fafafa;
+      --zinc-100: #f4f4f5;
+      --zinc-200: #e4e4e7;
+      --zinc-300: #d4d4d8;
+      --zinc-400: #a1a1aa;
+      --zinc-500: #71717a;
+      --zinc-600: #52525b;
+      --zinc-700: #3f3f46;
+      --zinc-800: #27272a;
+      --zinc-900: #18181b;
+      --emerald: #10b981;
+      --emerald-soft: #d1fae5;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     html {
       scroll-behavior: smooth;
     }
 
     body {
-      font-family: "Inter", sans-serif;
-      background: #fafafa;
-      color: #111;
+      margin: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: #fff;
+      color: #09090b;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
     }
 
-    .glass {
-      background: rgba(255,255,255,.82);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
     }
 
-    .hero-gradient {
+    button {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    ::selection {
+      background: #111;
+      color: #fff;
+    }
+
+    .glass-header {
+      background: rgba(5, 5, 5, 0.68);
+      backdrop-filter: blur(22px) saturate(150%);
+      -webkit-backdrop-filter: blur(22px) saturate(150%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+    }
+
+    .announcement {
+      background: #050505;
+      color: #d4d4d8;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .hero {
+      position: relative;
+      isolation: isolate;
       background:
-        radial-gradient(circle at 80% 20%, rgba(255,255,255,.16), transparent 28%),
-        radial-gradient(circle at 20% 80%, rgba(255,255,255,.08), transparent 25%),
-        linear-gradient(135deg, #050505 0%, #171717 50%, #080808 100%);
+        radial-gradient(circle at 50% 35%, rgba(255,255,255,.075), transparent 30%),
+        radial-gradient(circle at 15% 75%, rgba(16,185,129,.075), transparent 26%),
+        linear-gradient(145deg, #020202 0%, #080808 45%, #020202 100%);
+      overflow: hidden;
     }
 
-    .product-card {
-      transition: transform .3s ease, box-shadow .3s ease;
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 70px 70px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.8), transparent);
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,.8), transparent);
     }
 
-    .product-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 50px rgba(0,0,0,.10);
+    .hero-orb {
+      position: absolute;
+      width: 32rem;
+      height: 32rem;
+      border-radius: 9999px;
+      filter: blur(100px);
+      opacity: .12;
+      pointer-events: none;
     }
 
-    .btn {
-      transition: all .25s ease;
+    .hero-orb.one {
+      top: -12rem;
+      left: -12rem;
+      background: #fff;
     }
 
-    .btn:hover {
+    .hero-orb.two {
+      right: -13rem;
+      bottom: -14rem;
+      background: #10b981;
+    }
+
+    .hero-grid-line {
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.11),
+        transparent
+      );
+    }
+
+    .luxury-image {
+      position: relative;
+      overflow: hidden;
+      min-height: 420px;
+      background:
+        radial-gradient(circle at 50% 40%, rgba(255,255,255,.08), transparent 32%),
+        linear-gradient(145deg, #f8f8f8, #e8e8e8);
+    }
+
+    .luxury-image.dark {
+      background:
+        radial-gradient(circle at 50% 42%, rgba(255,255,255,.09), transparent 30%),
+        linear-gradient(145deg, #151515, #070707);
+    }
+
+    .luxury-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(
+        135deg,
+        rgba(255,255,255,.18),
+        transparent 38%,
+        transparent 65%,
+        rgba(0,0,0,.06)
+      );
+    }
+
+    .product-visual {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 42px;
+    }
+
+    .product-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      position: relative;
+      z-index: 2;
+      transition: transform .65s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .luxury-image:hover .product-visual img {
+      transform: scale(1.035);
+    }
+
+    .placeholder-object {
+      position: relative;
+      z-index: 2;
+      width: 180px;
+      height: 180px;
+      border-radius: 48px;
+      display: grid;
+      place-items: center;
+      color: #18181b;
+      background: linear-gradient(145deg, #fff, #d4d4d8);
+      box-shadow:
+        20px 20px 50px rgba(0,0,0,.12),
+        inset 1px 1px 0 rgba(255,255,255,.9);
+    }
+
+    .placeholder-object.dark {
+      color: #fff;
+      background: linear-gradient(145deg, #27272a, #09090b);
+      box-shadow:
+        20px 20px 50px rgba(0,0,0,.35),
+        inset 1px 1px 0 rgba(255,255,255,.08);
+    }
+
+    .premium-button {
+      transition:
+        transform .25s ease,
+        background .25s ease,
+        color .25s ease,
+        border-color .25s ease;
+    }
+
+    .premium-button:hover {
       transform: translateY(-2px);
     }
 
-    .btn:active {
-      transform: scale(.97);
+    .premium-button:active {
+      transform: translateY(0);
     }
 
-    .product-image {
-      transition: transform .5s ease;
+    .product-link {
+      transition: opacity .2s ease;
     }
 
-    .product-card:hover .product-image {
-      transform: scale(1.04);
-    }
-
-    .star {
-      color: #f59e0b;
+    .product-link:hover {
+      opacity: .65;
     }
 
     .review-card {
-      box-shadow: 0 10px 35px rgba(0,0,0,.05);
+      border-top: 1px solid #e4e4e7;
+      transition: border-color .25s ease;
     }
 
-    .scrollbar-hide::-webkit-scrollbar {
+    .review-card:hover {
+      border-color: #a1a1aa;
+    }
+
+    .modal-backdrop {
+      background: rgba(0,0,0,.72);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .checkout-sheet {
+      transform: translateY(105%);
+      transition: transform .42s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .checkout-sheet.open {
+      transform: translateY(0);
+    }
+
+    .checkout-overlay {
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .3s ease, visibility .3s ease;
+    }
+
+    .checkout-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .admin-root {
       display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: #09090b;
+      color: #f4f4f5;
+      overflow-y: auto;
     }
 
-    .scrollbar-hide {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
+    .admin-root.active {
+      display: block;
     }
 
-    @media (max-width: 640px) {
-      .hero-title {
-        font-size: 2.6rem;
-        line-height: 1.04;
+    .admin-card {
+      background: #111113;
+      border: 1px solid #27272a;
+    }
+
+    .admin-input {
+      width: 100%;
+      border: 1px solid #27272a;
+      background: #09090b;
+      color: #f4f4f5;
+      border-radius: 12px;
+      padding: 12px 14px;
+      outline: none;
+      transition: border-color .2s ease, background .2s ease;
+    }
+
+    .admin-input:focus {
+      border-color: #52525b;
+      background: #0d0d0f;
+    }
+
+    .admin-input::placeholder {
+      color: #52525b;
+    }
+
+    .admin-button {
+      border: 1px solid #27272a;
+      background: #f4f4f5;
+      color: #09090b;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-weight: 700;
+      transition: all .2s ease;
+    }
+
+    .admin-button:hover {
+      background: #fff;
+      transform: translateY(-1px);
+    }
+
+    .admin-button.secondary {
+      background: #18181b;
+      color: #f4f4f5;
+    }
+
+    .admin-button.secondary:hover {
+      background: #27272a;
+    }
+
+    .admin-button.danger {
+      background: transparent;
+      color: #fca5a5;
+      border-color: #3f1818;
+    }
+
+    .admin-stat {
+      border: 1px solid #27272a;
+      background: #0d0d0f;
+      border-radius: 18px;
+      padding: 20px;
+    }
+
+    .admin-section {
+      border: 1px solid #27272a;
+      background: #111113;
+      border-radius: 22px;
+      padding: 20px;
+    }
+
+    .admin-product-row {
+      border: 1px solid #27272a;
+      background: #0d0d0f;
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .admin-thumb {
+      width: 74px;
+      height: 74px;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #18181b;
+      border: 1px solid #27272a;
+      flex: 0 0 auto;
+    }
+
+    .admin-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .admin-scrollbar::-webkit-scrollbar {
+      width: 7px;
+    }
+
+    .admin-scrollbar::-webkit-scrollbar-track {
+      background: #09090b;
+    }
+
+    .admin-scrollbar::-webkit-scrollbar-thumb {
+      background: #27272a;
+      border-radius: 99px;
+    }
+
+    .legal-modal {
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .25s ease, visibility .25s ease;
+    }
+
+    .legal-modal.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .legal-panel {
+      transform: translateY(15px);
+      transition: transform .3s ease;
+    }
+
+    .legal-modal.open .legal-panel {
+      transform: translateY(0);
+    }
+
+    @media (max-width: 767px) {
+      .luxury-image {
+        min-height: 330px;
+      }
+
+      .product-visual {
+        padding: 30px;
+      }
+
+      .placeholder-object {
+        width: 145px;
+        height: 145px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .luxury-image {
+        min-height: 570px;
       }
     }
   </style>
@@ -118,1705 +449,2255 @@
 
 <body>
 
-  <!-- =========================
-       TOP SHIPPING BAR
-  ========================== -->
-  <div class="bg-black text-white text-center text-xs sm:text-sm font-medium py-2.5 px-4 tracking-wide">
-    <i class="fa-solid fa-truck-fast mr-2"></i>
-    FREE WORLDWIDE SHIPPING — LIMITED TIME
+  <!-- =========================================================
+       PREMIUM ANNOUNCEMENT BAR
+  ========================================================== -->
+  <div class="announcement">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <div class="min-h-[38px] flex items-center justify-center text-[10px] sm:text-[11px] tracking-[0.18em] uppercase font-semibold text-zinc-300 text-center">
+        Introducing NEXVIBE — Technology, thoughtfully curated.
+      </div>
+    </div>
   </div>
 
+  <!-- =========================================================
+       STICKY GLASSMORPHISM HEADER
+  ========================================================== -->
+  <header class="glass-header sticky top-0 z-50 text-white">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <div class="h-[68px] flex items-center justify-between gap-5">
 
-  <!-- =========================
-       NAVBAR
-  ========================== -->
-  <header class="sticky top-0 z-50 glass border-b border-gray-200/70">
-    <nav class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between">
+        <a href="#top" class="flex items-center gap-2.5 shrink-0" aria-label="NEXVIBE home">
+          <span class="w-7 h-7 rounded-[9px] border border-white/25 grid place-items-center">
+            <span class="w-2.5 h-2.5 rounded-full bg-white"></span>
+          </span>
+          <span class="font-extrabold tracking-[-0.06em] text-[17px]">NEXVIBE</span>
+        </a>
 
-      <a
-        href="#"
-        class="flex items-center gap-2"
-        aria-label="NEXVIBE Home"
-      >
-        <div class="w-9 h-9 rounded-xl bg-black text-white flex items-center justify-center">
-          <i class="fa-solid fa-bolt text-sm"></i>
+        <nav class="hidden md:flex items-center gap-8 text-[12px] font-medium text-zinc-300">
+          <a href="#collection" class="hover:text-white transition">Collection</a>
+          <a href="#philosophy" class="hover:text-white transition">Our Philosophy</a>
+          <a href="#reviews" class="hover:text-white transition">Reviews</a>
+          <a href="#contact" class="hover:text-white transition">Contact</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <button
+            type="button"
+            id="mobileMenuButton"
+            class="md:hidden w-10 h-10 grid place-items-center rounded-full border border-white/10 hover:bg-white/5 transition"
+            aria-label="Open menu"
+          >
+            <i class="fa-solid fa-bars text-sm"></i>
+          </button>
+
+          <a
+            href="#collection"
+            class="hidden sm:flex items-center justify-center h-10 px-4 rounded-full border border-white/15 bg-white/5 hover:bg-white/10 text-[11px] font-semibold transition"
+          >
+            Shop Collection
+          </a>
+
+          <button
+            type="button"
+            onclick="openCheckoutFromCart()"
+            class="relative w-10 h-10 rounded-full border border-white/10 grid place-items-center hover:bg-white/5 transition"
+            aria-label="Shopping bag"
+          >
+            <i class="fa-solid fa-bag-shopping text-[13px]"></i>
+            <span id="cartCount" class="hidden absolute -top-1 -right-1 min-w-[17px] h-[17px] px-1 rounded-full bg-white text-black text-[9px] font-bold items-center justify-center">0</span>
+          </button>
         </div>
+      </div>
 
-        <span class="text-xl font-extrabold tracking-tight">
-          NEXVIBE
-        </span>
-      </a>
-
-      <button
-        type="button"
-        onclick="openOrderModal('General Order')"
-        class="btn bg-black text-white text-sm font-semibold px-5 py-2.5 rounded-full shadow-sm"
-      >
-        Shop Now
-      </button>
-
-    </nav>
+      <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 py-4">
+        <nav class="flex flex-col gap-1">
+          <a href="#collection" class="px-3 py-3 rounded-xl text-sm text-zinc-300 hover:bg-white/5 hover:text-white">Collection</a>
+          <a href="#philosophy" class="px-3 py-3 rounded-xl text-sm text-zinc-300 hover:bg-white/5 hover:text-white">Our Philosophy</a>
+          <a href="#reviews" class="px-3 py-3 rounded-xl text-sm text-zinc-300 hover:bg-white/5 hover:text-white">Reviews</a>
+          <a href="#contact" class="px-3 py-3 rounded-xl text-sm text-zinc-300 hover:bg-white/5 hover:text-white">Contact</a>
+        </nav>
+      </div>
+    </div>
   </header>
 
+  <main id="top">
 
-  <main>
+    <!-- =========================================================
+         HYPER-PREMIUM DARK HERO
+    ========================================================== -->
+    <section class="hero text-white min-h-[calc(100svh-106px)] flex items-center">
+      <div class="hero-orb one"></div>
+      <div class="hero-orb two"></div>
 
-    <!-- =========================
-         HERO
-    ========================== -->
-    <section class="hero-gradient text-white overflow-hidden">
+      <div class="max-w-7xl mx-auto w-full px-5 sm:px-8 py-24 sm:py-32 lg:py-40">
+        <div class="max-w-5xl mx-auto text-center">
 
-      <div class="max-w-7xl mx-auto px-5 sm:px-6 py-16 sm:py-24 lg:py-28">
-
-        <div class="max-w-3xl mx-auto text-center">
-
-          <div class="inline-flex items-center gap-2 bg-white/10 border border-white/15 rounded-full px-4 py-2 text-xs sm:text-sm font-medium mb-7">
-            <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-            Trending products people love
+          <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.035] px-4 py-2 mb-8">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            <span class="text-[9px] sm:text-[10px] uppercase tracking-[0.24em] text-zinc-400 font-semibold">
+              A new standard of everyday technology
+            </span>
           </div>
 
-          <h1 class="hero-title text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight">
-            Small Things.
-            <span class="text-gray-400">Big Difference.</span>
+          <h1 class="font-extrabold tracking-[-0.075em] text-[clamp(3.2rem,11vw,8.5rem)] leading-[.88] max-w-6xl mx-auto">
+            Curating the Future of Everyday Living.
           </h1>
 
-          <p class="mt-6 text-gray-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-            Discover smart, useful and surprisingly satisfying products
-            designed to make everyday life easier, cleaner and better.
+          <p class="mt-8 max-w-2xl mx-auto text-zinc-400 text-sm sm:text-base lg:text-lg leading-7 sm:leading-8">
+            Thoughtfully selected technology designed to make ordinary moments feel effortlessly extraordinary.
           </p>
 
-          <div class="flex flex-col sm:flex-row gap-3 justify-center mt-9">
-
-            <button
-              type="button"
-              onclick="openOrderModal('General Order')"
-              class="btn bg-white text-black font-bold px-7 py-3.5 rounded-full inline-flex items-center justify-center gap-2"
-            >
-              Shop Now
-              <i class="fa-solid fa-arrow-right text-sm"></i>
-            </button>
-
+          <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
             <a
-              href="#reviews"
-              class="btn border border-white/25 bg-white/5 text-white font-semibold px-7 py-3.5 rounded-full inline-flex items-center justify-center gap-2"
+              href="#collection"
+              class="premium-button w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-white text-black text-xs font-bold"
             >
-              <i class="fa-regular fa-star"></i>
-              Customer Reviews
+              Explore Collection
+              <i class="fa-solid fa-arrow-down text-[10px]"></i>
             </a>
 
+            <a
+              href="#philosophy"
+              class="premium-button w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full border border-white/15 bg-white/[0.03] text-white text-xs font-semibold"
+            >
+              Our Philosophy
+            </a>
           </div>
-
-          <div class="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-3 text-xs sm:text-sm text-gray-300">
-
-            <div class="flex items-center gap-2">
-              <i class="fa-solid fa-shield-halved text-green-400"></i>
-              Secure Checkout
-            </div>
-
-            <div class="flex items-center gap-2">
-              <i class="fa-solid fa-truck text-blue-400"></i>
-              Worldwide Shipping
-            </div>
-
-            <div class="flex items-center gap-2">
-              <i class="fa-solid fa-rotate-left text-purple-400"></i>
-              30-Day Returns
-            </div>
-
-          </div>
-
         </div>
 
-      </div>
+        <div class="mt-24 max-w-5xl mx-auto">
+          <div class="h-px hero-grid-line"></div>
 
+          <div class="grid grid-cols-3 gap-5 py-6 text-center">
+            <div>
+              <div class="text-xl sm:text-2xl font-bold tracking-tight">03</div>
+              <div class="mt-1 text-[8px] sm:text-[9px] uppercase tracking-[0.2em] text-zinc-500">Curated Products</div>
+            </div>
+
+            <div>
+              <div class="text-xl sm:text-2xl font-bold tracking-tight">01</div>
+              <div class="mt-1 text-[8px] sm:text-[9px] uppercase tracking-[0.2em] text-zinc-500">Clear Philosophy</div>
+            </div>
+
+            <div>
+              <div class="text-xl sm:text-2xl font-bold tracking-tight">∞</div>
+              <div class="mt-1 text-[8px] sm:text-[9px] uppercase tracking-[0.2em] text-zinc-500">Everyday Possibilities</div>
+            </div>
+          </div>
+
+          <div class="h-px hero-grid-line"></div>
+        </div>
+      </div>
     </section>
 
-
-    <!-- =========================
-         BENEFIT STRIP
-    ========================== -->
-    <section class="bg-white border-b border-gray-100">
-
-      <div class="max-w-7xl mx-auto px-5 sm:px-6 py-6">
-
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
-
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center shrink-0">
-              <i class="fa-solid fa-truck-fast"></i>
-            </div>
-
-            <div>
-              <p class="text-sm font-bold">Free Shipping</p>
-              <p class="text-xs text-gray-500">Worldwide delivery</p>
-            </div>
+    <!-- =========================================================
+         PHILOSOPHY
+    ========================================================== -->
+    <section id="philosophy" class="bg-white border-b border-zinc-200">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-24 sm:py-32">
+        <div class="grid lg:grid-cols-[.7fr_1.3fr] gap-14 lg:gap-24 items-start">
+          <div>
+            <span class="text-[10px] uppercase tracking-[0.25em] text-zinc-500 font-bold">Our Philosophy</span>
+            <h2 class="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-[-0.06em] leading-[.95]">
+              Less noise.<br>
+              More signal.
+            </h2>
           </div>
 
-
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center shrink-0">
-              <i class="fa-solid fa-shield-halved"></i>
-            </div>
-
-            <div>
-              <p class="text-sm font-bold">Secure Payment</p>
-              <p class="text-xs text-gray-500">100% protected</p>
-            </div>
-          </div>
-
-
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center shrink-0">
-              <i class="fa-solid fa-rotate-left"></i>
-            </div>
-
-            <div>
-              <p class="text-sm font-bold">30-Day Returns</p>
-              <p class="text-xs text-gray-500">Shop with confidence</p>
-            </div>
-          </div>
-
-
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center shrink-0">
-              <i class="fa-solid fa-headset"></i>
-            </div>
-
-            <div>
-              <p class="text-sm font-bold">Friendly Support</p>
-              <p class="text-xs text-gray-500">We're here to help</p>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         PRODUCTS
-    ========================== -->
-    <section id="products" class="py-16 sm:py-20 bg-gray-50">
-
-      <div class="max-w-7xl mx-auto px-5 sm:px-6">
-
-        <div class="text-center max-w-2xl mx-auto mb-10">
-
-          <span class="text-xs font-bold uppercase tracking-[.18em] text-gray-500">
-            Trending Now
-          </span>
-
-          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mt-2">
-            Products Worth Talking About
-          </h2>
-
-          <p class="text-gray-500 mt-3 text-sm sm:text-base">
-            Carefully selected products that combine usefulness, style and everyday convenience.
-          </p>
-
-        </div>
-
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-
-          <!-- =========================
-               PRODUCT 1
-          ========================== -->
-          <article class="product-card bg-white rounded-3xl overflow-hidden border border-gray-100">
-
-            <div class="relative bg-gray-100 aspect-square overflow-hidden">
-
-              <span class="absolute top-4 left-4 z-10 bg-black text-white text-[11px] font-bold px-3 py-1.5 rounded-full">
-                BEST SELLER
-              </span>
-
-              <img
-                class="product-image w-full h-full object-cover"
-                src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=85"
-                alt="Cordless electric spin scrubber cleaning a bathroom"
-                loading="lazy"
-              >
-
-            </div>
-
-            <div class="p-5">
-
-              <div class="flex items-center gap-1 mb-3">
-                <i class="fa-solid fa-star star text-xs"></i>
-                <i class="fa-solid fa-star star text-xs"></i>
-                <i class="fa-solid fa-star star text-xs"></i>
-                <i class="fa-solid fa-star star text-xs"></i>
-                <i class="fa-solid fa-star star text-xs"></i>
-                <span class="text-xs text-gray-500 ml-1">(428)</span>
-              </div>
-
-              <span class="inline-block text-[11px] font-bold uppercase tracking-wide text-red-600 bg-red-50 px-2.5 py-1 rounded-full mb-3">
-                Trending — High Demand
-              </span>
-
-              <h3 class="font-extrabold text-xl leading-tight">
-                Make Stubborn Cleaning Feel Effortless
-              </h3>
-
-              <ul class="mt-4 space-y-3">
-
-                <li class="flex gap-2.5 text-sm text-gray-600 leading-relaxed">
-                  <i class="fa-solid fa-check text-green-600 mt-1 shrink-0"></i>
-                  <span>
-                    <strong class="text-gray-900">Less Scrubbing, More Results</strong> —
-                    Cut through built-up grime, soap scum and everyday mess without exhausting your hands.
-                  </span>
-                </li>
-
-                <li class="flex gap-2.5 text-sm text-gray-600 leading-relaxed">
-                  <i class="fa-solid fa-check text-green-600 mt-1 shrink-0"></i>
-                  <span>
-                    <strong class="text-gray-900">Reach the Hard-to-Reach Spots</strong> —
-                    Tackle tubs, tiles, sinks and awkward corners without constantly bending or stretching.
-                  </span>
-                </li>
-
-                <li class="flex gap-2.5 text-sm text-gray-600 leading-relaxed">
-                  <i class="fa-solid fa-check text-green-600 mt-1 shrink-0"></i>
-                  <span>
-                    <strong class="text-gray-900">Turn a Chore Into a Quick Clean</strong> —
-                    Go cordless and move freely around your home without wrestling with a power cord.
-                  </span>
-                </li>
-
-              </ul>
-
-              <div class="flex items-end gap-2 mt-5">
-                <span class="text-2xl font-extrabold">$24.99</span>
-                <span class="text-sm text-gray-400 line-through mb-1">$49.99</span>
-                <span class="text-xs font-bold text-green-600 mb-1">50% OFF</span>
-              </div>
-
-              <button
-                type="button"
-                onclick="orderProduct('Cordless Electric Spin Scrubber')"
-                class="btn w-full mt-5 bg-black text-white py-3.5 rounded-full font-bold text-sm flex items-center justify-center gap-2"
-              >
-                Order Now
-                <i class="fa-solid fa-arrow-right"></i>
-              </button>
-
-            </div>
-
-          </article>
-
-
-          <!-- =========================
-               PRODUCT 2
-          ========================== -->
-          <article class="product-card bg-white rounded-3xl overflow-hidden border border-gray-100">
-
-            <div class="relative bg-gray-100 aspect-square overflow-hidden">
-
-              <span class="absolute top-4 left-4 z-10 bg-white text-black text-[11px] font-bold px-3 py-1.5 rounded-full shadow-sm">
-                TRENDING
-              </span>
-
-              <img
-                class="product-image w-full h-full object-cover"
-                src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=900&q=85"
-                alt="Dog representing the LED ultrasonic anti-barking device"
-                loading="lazy"
-              >
-
-            </div>
-
-            <div class="p-5">
-
-              <div class="flex items-center gap-1 mb-3">
-                <i class="fa-solid fa-star star text-xs"></i>
-                <i class="fa-solid fa-star star text-xs"></i>
-                <i class="fa-solid fa-star star text-xs"></i>
-                <i class="fa-solid fa-star star text-xs"></i>
-                <i class="fa-solid fa-star star text-xs"></i>
-                <span class="text-xs text-gray-500 ml-1">(317)</span>
-              </div>
-
-              <span class="inline-block text-[11px] font-bold uppercase tracking-wide text-red-600 bg-red-50 px-2.5 py-1 rounded-full mb-3">
-                Pet Owners Are Loving This
-              </span>
-
-              <h3 class="font-extrabold text-xl leading-tight">
-                A Quieter Home Without Constant Shouting
-              </h3>
-
-              <ul class="mt-4 space-y-3">
-
-                <li class="flex gap-2.5 text-sm text-gray-600 leading-relaxed">
-                  <i class="fa-solid fa-check text-green-600 mt-1 shrink-0"></i>
-                  <span>
-                    <strong class="text-gray-900">Help Interrupt Unwanted Barking</strong> —
-                    Designed to provide a gentle training cue when excessive barking becomes disruptive.
-                  </span>
-                </li>
-
-                <li class="flex gap-2.5 text-sm text-gray-600 leading-relaxed">
-                  <i class="fa-solid fa-check text-green-600 mt-1 shrink-0"></i>
-                  <span>
-                    <strong class="text-gray-900">Enjoy More Peace at Home</strong> —
-                    Reduce those frustrating barking interruptions around the house, yard or walks.
-                  </span>
-                </li>
-
-                <li class="flex gap-2.5 text-sm text-gray-600 leading-relaxed">
-                  <i class="fa-solid fa-check text-green-600 mt-1 shrink-0"></i>
-                  <span>
-                    <strong class="text-gray-900">Train With Less Stress</strong> —
-                    A simple, convenient tool for owners looking for a more controlled training routine.
-                  </span>
-                </li>
-
-              </ul>
-
-              <div class="flex items-end gap-2 mt-5">
-                <span class="text-2xl font-extrabold">$19.99</span>
-                <span class="text-sm text-gray-400 line-through mb-1">$39.99</span>
-                <span class="text-xs font-bold text-green-600 mb-1">50% OFF</span>
-              </div>
-
-              <button
-                type="button"
-                onclick="orderProduct('LED Ultrasonic Dog Anti-Barking Device')"
-                class="btn w-full mt-5 bg-black text-white py-3.5 rounded-full font-bold text-sm flex items-center justify-center gap-2"
-              >
-                Order Now
-                <i class="fa-solid fa-arrow-right"></i>
-              </button>
-
-            </div>
-
-          </article>
-
-
-          <!-- =========================
-               PRODUCT 3
-          ========================== -->
-          <article class="product-card bg-white rounded-3xl overflow-hidden border border-gray-100">
-
-            <div class="relative bg-gray-100 aspect-square overflow-hidden">
-
-              <span class="absolute top-4 left-4 z-10 bg-black text-white text-[11px] font-bold px-3 py-1.5 rounded-full">
-                VIRAL PICK
-              </span>
-
-              <img
-                class="product-image w-full h-full object-cover"
-                src="https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=900&q=85"
-                alt="Ambient sunset style room lighting"
-                loading="lazy"
-              >
-
-            </div>
-
-            <div class="p-5">
-
-              <div class="flex items-center gap-1 mb-3">
-                <i class="fa-solid fa-star star text-xs"></i>
-                <i class="fa-solid fa-star star text-xs"></i>
-                <i class="fa-solid fa-star star text-xs"></i>
-                <i class="fa-solid fa-star star text-xs"></i>
-                <i class="fa-solid fa-star star text-xs"></i>
-                <span class="text-xs text-gray-500 ml-1">(562)</span>
-              </div>
-
-              <span class="inline-block text-[11px] font-bold uppercase tracking-wide text-purple-600 bg-purple-50 px-2.5 py-1 rounded-full mb-3">
-                Viral Home Décor Pick
-              </span>
-
-              <h3 class="font-extrabold text-xl leading-tight">
-                Turn Any Room Into Your Favorite Place
-              </h3>
-
-              <ul class="mt-4 space-y-3">
-
-                <li class="flex gap-2.5 text-sm text-gray-600 leading-relaxed">
-                  <i class="fa-solid fa-check text-green-600 mt-1 shrink-0"></i>
-                  <span>
-                    <strong class="text-gray-900">Instantly Transform Your Space</strong> —
-                    Fill your room with warm sunset and galaxy-inspired lighting for an atmosphere that feels completely different.
-                  </span>
-                </li>
-
-                <li class="flex gap-2.5 text-sm text-gray-600 leading-relaxed">
-                  <i class="fa-solid fa-check text-green-600 mt-1 shrink-0"></i>
-                  <span>
-                    <strong class="text-gray-900">Make Ordinary Evenings Feel Special</strong> —
-                    Create a relaxing backdrop for movie nights, music, gaming, dates or winding down.
-                  </span>
-                </li>
-
-                <li class="flex gap-2.5 text-sm text-gray-600 leading-relaxed">
-                  <i class="fa-solid fa-check text-green-600 mt-1 shrink-0"></i>
-                  <span>
-                    <strong class="text-gray-900">Give Your Camera a Glow-Up</strong> —
-                    Add an eye-catching background for TikToks, Reels, photos and video calls without complicated setup.
-                  </span>
-                </li>
-
-              </ul>
-
-              <div class="flex items-end gap-2 mt-5">
-                <span class="text-2xl font-extrabold">$22.99</span>
-                <span class="text-sm text-gray-400 line-through mb-1">$44.99</span>
-                <span class="text-xs font-bold text-green-600 mb-1">49% OFF</span>
-              </div>
-
-              <button
-                type="button"
-                onclick="orderProduct('Sunset Lamp Galaxy Projector')"
-                class="btn w-full mt-5 bg-black text-white py-3.5 rounded-full font-bold text-sm flex items-center justify-center gap-2"
-              >
-                Order Now
-                <i class="fa-solid fa-arrow-right"></i>
-              </button>
-
-            </div>
-
-          </article>
-
-        </div>
-
-
-        <div class="text-center mt-10">
-
-          <div class="inline-flex flex-wrap justify-center items-center gap-2 text-sm text-gray-500">
-
-            <div class="flex -space-x-2">
-              <div class="w-7 h-7 rounded-full bg-gray-300 border-2 border-white"></div>
-              <div class="w-7 h-7 rounded-full bg-gray-400 border-2 border-white"></div>
-              <div class="w-7 h-7 rounded-full bg-gray-500 border-2 border-white"></div>
-              <div class="w-7 h-7 rounded-full bg-gray-600 border-2 border-white"></div>
-            </div>
-
-            <span>
-              <strong class="text-gray-900">10,000+</strong> happy customers
-            </span>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         WHY NEXVIBE
-    ========================== -->
-    <section class="bg-white py-16 sm:py-20">
-
-      <div class="max-w-7xl mx-auto px-5 sm:px-6">
-
-        <div class="max-w-2xl mx-auto text-center mb-10">
-
-          <span class="text-xs font-bold uppercase tracking-[.18em] text-gray-500">
-            Why NEXVIBE
-          </span>
-
-          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mt-2">
-            Shop With Confidence
-          </h2>
-
-        </div>
-
-
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 max-w-4xl mx-auto">
-
-          <div class="text-center p-7 rounded-3xl bg-gray-50 border border-gray-100">
-
-            <div class="w-14 h-14 mx-auto rounded-2xl bg-black text-white flex items-center justify-center">
-              <i class="fa-solid fa-lock text-lg"></i>
-            </div>
-
-            <h3 class="font-bold mt-5">Secure Checkout</h3>
-
-            <p class="text-gray-500 text-sm mt-2 leading-relaxed">
-              Your payment information is protected with secure checkout technology.
+          <div class="max-w-2xl">
+            <p class="text-zinc-600 text-base sm:text-lg leading-8">
+              NEXVIBE exists for people who appreciate technology without wanting their homes, routines,
+              or attention overwhelmed by it.
             </p>
 
-          </div>
-
-
-          <div class="text-center p-7 rounded-3xl bg-gray-50 border border-gray-100">
-
-            <div class="w-14 h-14 mx-auto rounded-2xl bg-black text-white flex items-center justify-center">
-              <i class="fa-solid fa-rotate-left text-lg"></i>
-            </div>
-
-            <h3 class="font-bold mt-5">30-Day Money Back</h3>
-
-            <p class="text-gray-500 text-sm mt-2 leading-relaxed">
-              Not satisfied? Our 30-day return promise makes shopping stress-free.
+            <p class="mt-6 text-zinc-500 text-sm sm:text-base leading-7">
+              We search for small pieces of technology that solve a real problem, create a meaningful
+              feeling, or simply make an ordinary moment more enjoyable. Then we remove the clutter and
+              present only what deserves consideration.
             </p>
 
-          </div>
-
-
-          <div class="text-center p-7 rounded-3xl bg-gray-50 border border-gray-100">
-
-            <div class="w-14 h-14 mx-auto rounded-2xl bg-black text-white flex items-center justify-center">
-              <i class="fa-solid fa-earth-americas text-lg"></i>
+            <div class="mt-10 grid sm:grid-cols-3 gap-8 border-t border-zinc-200 pt-8">
+              <div>
+                <div class="text-2xl font-extrabold tracking-tight">01</div>
+                <p class="mt-2 text-xs font-semibold">Thoughtfully Selected</p>
+              </div>
+              <div>
+                <div class="text-2xl font-extrabold tracking-tight">02</div>
+                <p class="mt-2 text-xs font-semibold">Beautifully Presented</p>
+              </div>
+              <div>
+                <div class="text-2xl font-extrabold tracking-tight">03</div>
+                <p class="mt-2 text-xs font-semibold">Purposefully Useful</p>
+              </div>
             </div>
-
-            <h3 class="font-bold mt-5">Worldwide Delivery</h3>
-
-            <p class="text-gray-500 text-sm mt-2 leading-relaxed">
-              We make it easy to discover useful products from almost anywhere.
-            </p>
-
           </div>
-
         </div>
-
       </div>
-
     </section>
 
+    <!-- =========================================================
+         COLLECTION
+    ========================================================== -->
+    <section id="collection" class="bg-zinc-50">
 
-    <!-- =========================
+      <!-- PRODUCT 01 -->
+      <article
+        id="product-0"
+        class="border-b border-zinc-200 bg-white"
+        data-product-index="0"
+      >
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 py-16 sm:py-24 lg:py-28">
+
+          <div class="grid lg:grid-cols-[1.08fr_.92fr] gap-10 lg:gap-20 items-center">
+
+            <div class="luxury-image order-1 lg:order-1 rounded-[28px] sm:rounded-[36px] border border-zinc-200">
+              <div class="product-visual">
+                <img
+                  id="product-image-0"
+                  class="hidden"
+                  alt="The Ergonomic Power Scrubber"
+                  loading="lazy"
+                >
+
+                <div id="product-placeholder-0" class="placeholder-object">
+                  <i class="fa-solid fa-spray-can-sparkles text-5xl"></i>
+                </div>
+              </div>
+
+              <div class="absolute left-5 top-5 z-10">
+                <span class="inline-flex rounded-full bg-white/80 backdrop-blur px-3 py-1.5 text-[9px] uppercase tracking-[0.18em] font-bold border border-zinc-200">
+                  NEXVIBE / 01
+                </span>
+              </div>
+            </div>
+
+            <div class="order-2 lg:order-2">
+              <div class="text-[10px] uppercase tracking-[0.24em] text-zinc-500 font-bold">
+                Everyday Utility / 01
+              </div>
+
+              <h2
+                id="product-title-0"
+                class="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-[-0.065em] leading-[.94]"
+              >
+                The Ergonomic Power Scrubber.
+              </h2>
+
+              <p class="mt-6 text-zinc-600 text-sm sm:text-base leading-7 max-w-xl">
+                A cordless cleaning tool designed to turn one of the most repetitive household chores
+                into a faster, cleaner and significantly more effortless routine.
+              </p>
+
+              <div class="mt-8 space-y-4">
+                <div class="flex items-start gap-3">
+                  <span class="mt-0.5 w-5 h-5 rounded-full bg-emerald-50 text-emerald-600 grid place-items-center shrink-0">
+                    <i class="fa-solid fa-check text-[9px]"></i>
+                  </span>
+                  <span class="text-sm text-zinc-700">Cordless motorized cleaning power</span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <span class="mt-0.5 w-5 h-5 rounded-full bg-emerald-50 text-emerald-600 grid place-items-center shrink-0">
+                    <i class="fa-solid fa-check text-[9px]"></i>
+                  </span>
+                  <span class="text-sm text-zinc-700">Ergonomic design for reduced effort</span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <span class="mt-0.5 w-5 h-5 rounded-full bg-emerald-50 text-emerald-600 grid place-items-center shrink-0">
+                    <i class="fa-solid fa-check text-[9px]"></i>
+                  </span>
+                  <span class="text-sm text-zinc-700">Built for bathrooms, kitchens and hard surfaces</span>
+                </div>
+              </div>
+
+              <div class="mt-10 pt-7 border-t border-zinc-200">
+                <div class="flex items-end gap-3">
+                  <span
+                    id="product-old-price-0"
+                    class="text-sm text-zinc-400 line-through"
+                  >
+                    $39.99
+                  </span>
+
+                  <span
+                    id="product-price-0"
+                    class="text-3xl font-extrabold tracking-[-0.04em]"
+                  >
+                    $24.99
+                  </span>
+                </div>
+
+                <button
+                  type="button"
+                  data-product-index="0"
+                  class="checkout-trigger premium-button mt-5 w-full h-14 rounded-2xl bg-black text-white text-xs font-bold flex items-center justify-center gap-2"
+                >
+                  Secure Your Order
+                  <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                </button>
+
+                <div class="mt-4 flex items-center gap-2 text-[10px] uppercase tracking-[0.16em] text-zinc-400">
+                  <i class="fa-solid fa-lock"></i>
+                  Secure checkout
+                  <span class="w-1 h-1 rounded-full bg-zinc-300"></span>
+                  Carefully curated
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </article>
+
+      <!-- PRODUCT 02 -->
+      <article
+        id="product-1"
+        class="border-b border-zinc-200 bg-zinc-50"
+        data-product-index="1"
+      >
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 py-16 sm:py-24 lg:py-28">
+
+          <div class="grid lg:grid-cols-[.92fr_1.08fr] gap-10 lg:gap-20 items-center">
+
+            <div class="order-2 lg:order-1">
+              <div class="text-[10px] uppercase tracking-[0.24em] text-zinc-500 font-bold">
+                Calm Technology / 02
+              </div>
+
+              <h2
+                id="product-title-1"
+                class="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-[-0.065em] leading-[.94]"
+              >
+                The Humane Peace Device.
+              </h2>
+
+              <p class="mt-6 text-zinc-600 text-sm sm:text-base leading-7 max-w-xl">
+                A compact ultrasonic training device designed to help redirect unwanted canine behavior
+                using sound-based cues rather than harsh physical intervention.
+              </p>
+
+              <div class="mt-8 space-y-4">
+                <div class="flex items-start gap-3">
+                  <span class="mt-0.5 w-5 h-5 rounded-full bg-emerald-50 text-emerald-600 grid place-items-center shrink-0">
+                    <i class="fa-solid fa-check text-[9px]"></i>
+                  </span>
+                  <span class="text-sm text-zinc-700">Ultrasonic sound-based training approach</span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <span class="mt-0.5 w-5 h-5 rounded-full bg-emerald-50 text-emerald-600 grid place-items-center shrink-0">
+                    <i class="fa-solid fa-check text-[9px]"></i>
+                  </span>
+                  <span class="text-sm text-zinc-700">Compact handheld form factor</span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <span class="mt-0.5 w-5 h-5 rounded-full bg-emerald-50 text-emerald-600 grid place-items-center shrink-0">
+                    <i class="fa-solid fa-check text-[9px]"></i>
+                  </span>
+                  <span class="text-sm text-zinc-700">Designed for calmer everyday training moments</span>
+                </div>
+              </div>
+
+              <div class="mt-10 pt-7 border-t border-zinc-200">
+                <div class="flex items-end gap-3">
+                  <span
+                    id="product-old-price-1"
+                    class="text-sm text-zinc-400 line-through"
+                  >
+                    $29.99
+                  </span>
+
+                  <span
+                    id="product-price-1"
+                    class="text-3xl font-extrabold tracking-[-0.04em]"
+                  >
+                    $19.99
+                  </span>
+                </div>
+
+                <button
+                  type="button"
+                  data-product-index="1"
+                  class="checkout-trigger premium-button mt-5 w-full h-14 rounded-2xl bg-black text-white text-xs font-bold flex items-center justify-center gap-2"
+                >
+                  Secure Your Order
+                  <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                </button>
+
+                <div class="mt-4 flex items-center gap-2 text-[10px] uppercase tracking-[0.16em] text-zinc-400">
+                  <i class="fa-solid fa-lock"></i>
+                  Secure checkout
+                  <span class="w-1 h-1 rounded-full bg-zinc-300"></span>
+                  Carefully curated
+                </div>
+              </div>
+            </div>
+
+            <div class="luxury-image dark order-1 lg:order-2 rounded-[28px] sm:rounded-[36px] border border-zinc-800">
+              <div class="product-visual">
+                <img
+                  id="product-image-1"
+                  class="hidden"
+                  alt="The Humane Peace Device"
+                  loading="lazy"
+                >
+
+                <div id="product-placeholder-1" class="placeholder-object dark">
+                  <i class="fa-solid fa-dog text-5xl"></i>
+                </div>
+              </div>
+
+              <div class="absolute right-5 top-5 z-10">
+                <span class="inline-flex rounded-full bg-black/50 backdrop-blur px-3 py-1.5 text-[9px] uppercase tracking-[0.18em] font-bold border border-white/10 text-white">
+                  NEXVIBE / 02
+                </span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </article>
+
+      <!-- PRODUCT 03 -->
+      <article
+        id="product-2"
+        class="border-b border-zinc-200 bg-white"
+        data-product-index="2"
+      >
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 py-16 sm:py-24 lg:py-28">
+
+          <div class="grid lg:grid-cols-[1.08fr_.92fr] gap-10 lg:gap-20 items-center">
+
+            <div class="luxury-image dark order-1 rounded-[28px] sm:rounded-[36px] border border-zinc-800">
+              <div class="product-visual">
+                <img
+                  id="product-image-2"
+                  class="hidden"
+                  alt="The Mood Altering Light Tech"
+                  loading="lazy"
+                >
+
+                <div id="product-placeholder-2" class="placeholder-object dark">
+                  <i class="fa-solid fa-stars text-5xl"></i>
+                </div>
+              </div>
+
+              <div class="absolute left-5 top-5 z-10">
+                <span class="inline-flex rounded-full bg-black/50 backdrop-blur px-3 py-1.5 text-[9px] uppercase tracking-[0.18em] font-bold border border-white/10 text-white">
+                  NEXVIBE / 03
+                </span>
+              </div>
+            </div>
+
+            <div class="order-2">
+              <div class="text-[10px] uppercase tracking-[0.24em] text-zinc-500 font-bold">
+                Ambient Technology / 03
+              </div>
+
+              <h2
+                id="product-title-2"
+                class="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-[-0.065em] leading-[.94]"
+              >
+                The Mood Altering Light Tech.
+              </h2>
+
+              <p class="mt-6 text-zinc-600 text-sm sm:text-base leading-7 max-w-xl">
+                Transform ordinary rooms into immersive visual environments with an atmospheric projector
+                built for sunsets, galaxies, quiet nights and everything in between.
+              </p>
+
+              <div class="mt-8 space-y-4">
+                <div class="flex items-start gap-3">
+                  <span class="mt-0.5 w-5 h-5 rounded-full bg-emerald-50 text-emerald-600 grid place-items-center shrink-0">
+                    <i class="fa-solid fa-check text-[9px]"></i>
+                  </span>
+                  <span class="text-sm text-zinc-700">Sunset and galaxy-inspired projections</span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <span class="mt-0.5 w-5 h-5 rounded-full bg-emerald-50 text-emerald-600 grid place-items-center shrink-0">
+                    <i class="fa-solid fa-check text-[9px]"></i>
+                  </span>
+                  <span class="text-sm text-zinc-700">Designed for bedrooms, desks and living spaces</span>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <span class="mt-0.5 w-5 h-5 rounded-full bg-emerald-50 text-emerald-600 grid place-items-center shrink-0">
+                    <i class="fa-solid fa-check text-[9px]"></i>
+                  </span>
+                  <span class="text-sm text-zinc-700">Instant ambient transformation at home</span>
+                </div>
+              </div>
+
+              <div class="mt-10 pt-7 border-t border-zinc-200">
+                <div class="flex items-end gap-3">
+                  <span
+                    id="product-old-price-2"
+                    class="text-sm text-zinc-400 line-through"
+                  >
+                    $34.99
+                  </span>
+
+                  <span
+                    id="product-price-2"
+                    class="text-3xl font-extrabold tracking-[-0.04em]"
+                  >
+                    $22.99
+                  </span>
+                </div>
+
+                <button
+                  type="button"
+                  data-product-index="2"
+                  class="checkout-trigger premium-button mt-5 w-full h-14 rounded-2xl bg-black text-white text-xs font-bold flex items-center justify-center gap-2"
+                >
+                  Secure Your Order
+                  <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                </button>
+
+                <div class="mt-4 flex items-center gap-2 text-[10px] uppercase tracking-[0.16em] text-zinc-400">
+                  <i class="fa-solid fa-lock"></i>
+                  Secure checkout
+                  <span class="w-1 h-1 rounded-full bg-zinc-300"></span>
+                  Carefully curated
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- =========================================================
          REVIEWS
-    ========================== -->
-    <section id="reviews" class="py-16 sm:py-20 bg-gray-50">
+    ========================================================== -->
+    <section id="reviews" class="bg-white">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-24 sm:py-32">
 
-      <div class="max-w-7xl mx-auto px-5 sm:px-6">
-
-        <div class="text-center max-w-2xl mx-auto mb-10">
-
-          <span class="text-xs font-bold uppercase tracking-[.18em] text-gray-500">
-            Customer Love
+        <div class="max-w-2xl">
+          <span class="text-[10px] uppercase tracking-[0.25em] text-zinc-500 font-bold">
+            Customer Notes
           </span>
 
-          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mt-2">
-            Loved By Thousands
+          <h2 class="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-[-0.065em] leading-[.95]">
+            Technology that earns its place.
           </h2>
 
-          <div class="flex justify-center items-center gap-2 mt-4">
-
-            <div class="flex gap-1">
-              <i class="fa-solid fa-star star"></i>
-              <i class="fa-solid fa-star star"></i>
-              <i class="fa-solid fa-star star"></i>
-              <i class="fa-solid fa-star star"></i>
-              <i class="fa-solid fa-star star"></i>
-            </div>
-
-            <span class="text-sm font-semibold">
-              4.9/5
-            </span>
-
-          </div>
-
+          <p class="mt-6 text-sm sm:text-base text-zinc-500 leading-7">
+            A few words from people who brought NEXVIBE technology into their everyday routines.
+          </p>
         </div>
 
+        <div class="grid md:grid-cols-3 gap-0 mt-16">
 
-        <div class="flex overflow-x-auto scrollbar-hide gap-5 snap-x snap-mandatory pb-3 md:grid md:grid-cols-3 md:overflow-visible">
-
-
-          <article class="review-card bg-white rounded-3xl p-6 min-w-[85%] sm:min-w-[60%] md:min-w-0 snap-start">
-
-            <div class="flex gap-1 mb-4">
-              <i class="fa-solid fa-star star text-sm"></i>
-              <i class="fa-solid fa-star star text-sm"></i>
-              <i class="fa-solid fa-star star text-sm"></i>
-              <i class="fa-solid fa-star star text-sm"></i>
-              <i class="fa-solid fa-star star text-sm"></i>
+          <article class="review-card py-8 md:pr-8">
+            <div class="flex gap-1 text-[11px] text-black">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
             </div>
 
-            <p class="text-gray-700 text-sm leading-relaxed">
-              “I honestly didn't expect much, but this turned out to be one of my favorite little purchases. The quality is much better than I expected.”
+            <p class="mt-7 text-sm sm:text-base leading-7 text-zinc-700">
+              “The scrubber is one of those things I didn't know I needed until I used it.
+              Cleaning the bathroom feels dramatically easier now.”
             </p>
 
-            <div class="flex items-center gap-3 mt-6">
-
-              <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center font-bold">
-                JM
-              </div>
-
-              <div>
-                <p class="text-sm font-bold">Jessica M.</p>
-                <p class="text-xs text-gray-500">California, USA</p>
-              </div>
-
-              <i class="fa-solid fa-circle-check text-green-500 ml-auto"></i>
-
+            <div class="mt-8">
+              <div class="text-xs font-bold">Sarah M.</div>
+              <div class="mt-1 text-[10px] text-zinc-400 uppercase tracking-[0.15em]">New York, USA</div>
             </div>
-
           </article>
 
-
-          <article class="review-card bg-white rounded-3xl p-6 min-w-[85%] sm:min-w-[60%] md:min-w-0 snap-start">
-
-            <div class="flex gap-1 mb-4">
-              <i class="fa-solid fa-star star text-sm"></i>
-              <i class="fa-solid fa-star star text-sm"></i>
-              <i class="fa-solid fa-star star text-sm"></i>
-              <i class="fa-solid fa-star star text-sm"></i>
-              <i class="fa-solid fa-star star text-sm"></i>
+          <article class="review-card py-8 md:px-8">
+            <div class="flex gap-1 text-[11px] text-black">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
             </div>
 
-            <p class="text-gray-700 text-sm leading-relaxed">
-              “Super easy ordering experience and the product is exactly what I needed. Shipping was smooth and customer service was helpful.”
+            <p class="mt-7 text-sm sm:text-base leading-7 text-zinc-700">
+              “Small, simple and actually useful. I keep the training device nearby and it has become
+              part of our daily routine.”
             </p>
 
-            <div class="flex items-center gap-3 mt-6">
-
-              <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center font-bold">
-                DT
-              </div>
-
-              <div>
-                <p class="text-sm font-bold">Daniel T.</p>
-                <p class="text-xs text-gray-500">Texas, USA</p>
-              </div>
-
-              <i class="fa-solid fa-circle-check text-green-500 ml-auto"></i>
-
+            <div class="mt-8">
+              <div class="text-xs font-bold">Michael R.</div>
+              <div class="mt-1 text-[10px] text-zinc-400 uppercase tracking-[0.15em]">Austin, USA</div>
             </div>
-
           </article>
 
-
-          <article class="review-card bg-white rounded-3xl p-6 min-w-[85%] sm:min-w-[60%] md:min-w-0 snap-start">
-
-            <div class="flex gap-1 mb-4">
-              <i class="fa-solid fa-star star text-sm"></i>
-              <i class="fa-solid fa-star star text-sm"></i>
-              <i class="fa-solid fa-star star text-sm"></i>
-              <i class="fa-solid fa-star star text-sm"></i>
-              <i class="fa-solid fa-star star text-sm"></i>
+          <article class="review-card py-8 md:pl-8">
+            <div class="flex gap-1 text-[11px] text-black">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
             </div>
 
-            <p class="text-gray-700 text-sm leading-relaxed">
-              “Great find! It arrived nicely packaged and works just as described. I've already recommended NEXVIBE to a couple of friends.”
+            <p class="mt-7 text-sm sm:text-base leading-7 text-zinc-700">
+              “The projector completely changes the atmosphere of my room at night.
+              It feels much more premium than the price suggests.”
             </p>
 
-            <div class="flex items-center gap-3 mt-6">
-
-              <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center font-bold">
-                AS
-              </div>
-
-              <div>
-                <p class="text-sm font-bold">Amanda S.</p>
-                <p class="text-xs text-gray-500">New York, USA</p>
-              </div>
-
-              <i class="fa-solid fa-circle-check text-green-500 ml-auto"></i>
-
+            <div class="mt-8">
+              <div class="text-xs font-bold">Olivia T.</div>
+              <div class="mt-1 text-[10px] text-zinc-400 uppercase tracking-[0.15em]">London, UK</div>
             </div>
-
           </article>
 
         </div>
-
       </div>
-
     </section>
 
-
-    <!-- =========================
+    <!-- =========================================================
          FINAL CTA
-    ========================== -->
-    <section class="bg-black text-white py-16 sm:py-20">
+    ========================================================== -->
+    <section class="bg-black text-white">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-24 sm:py-32 text-center">
+        <span class="text-[10px] uppercase tracking-[0.25em] text-zinc-500 font-bold">
+          The NEXVIBE Standard
+        </span>
 
-      <div class="max-w-3xl mx-auto px-5 text-center">
-
-        <div class="w-14 h-14 mx-auto rounded-2xl bg-white text-black flex items-center justify-center mb-6">
-          <i class="fa-solid fa-bolt"></i>
-        </div>
-
-        <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight">
-          Find Your Next Favorite Thing.
+        <h2 class="mt-6 text-4xl sm:text-5xl lg:text-7xl font-extrabold tracking-[-0.07em] leading-[.92] max-w-4xl mx-auto">
+          Keep only what makes life better.
         </h2>
 
-        <p class="text-gray-400 mt-4 text-sm sm:text-base leading-relaxed">
-          Discover useful, clever and trending products before everyone else does.
+        <p class="mt-7 max-w-xl mx-auto text-zinc-400 text-sm sm:text-base leading-7">
+          Explore the collection and discover technology chosen with intention.
         </p>
 
-        <button
-          type="button"
-          onclick="openOrderModal('General Order')"
-          class="btn mt-8 inline-flex items-center justify-center gap-2 bg-white text-black px-7 py-3.5 rounded-full font-bold"
+        <a
+          href="#collection"
+          class="premium-button mt-9 inline-flex items-center justify-center gap-2 rounded-full bg-white text-black px-7 py-4 text-xs font-bold"
         >
-          Shop Trending Products
-          <i class="fa-solid fa-arrow-right"></i>
-        </button>
-
+          Explore NEXVIBE
+          <i class="fa-solid fa-arrow-right text-[10px]"></i>
+        </a>
       </div>
-
     </section>
 
   </main>
 
-
-  <!-- =========================
+  <!-- =========================================================
        FOOTER
-  ========================== -->
-  <footer class="bg-[#080808] text-white border-t border-white/10">
+  ========================================================== -->
+  <footer id="contact" class="bg-[#050505] text-white border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-12 sm:py-16">
 
-    <div class="max-w-7xl mx-auto px-5 sm:px-6 py-12">
+      <div class="grid md:grid-cols-[1fr_auto] gap-12 items-start">
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-
-
-        <div class="lg:col-span-2">
-
-          <div class="flex items-center gap-2">
-
-            <div class="w-9 h-9 rounded-xl bg-white text-black flex items-center justify-center">
-              <i class="fa-solid fa-bolt text-sm"></i>
-            </div>
-
-            <span class="text-xl font-extrabold tracking-tight">
-              NEXVIBE
+        <div>
+          <a href="#top" class="inline-flex items-center gap-2.5">
+            <span class="w-7 h-7 rounded-[9px] border border-white/20 grid place-items-center">
+              <span class="w-2.5 h-2.5 rounded-full bg-white"></span>
             </span>
+            <span class="font-extrabold tracking-[-0.06em] text-[17px]">NEXVIBE</span>
+          </a>
 
-          </div>
-
-          <p class="text-gray-500 text-sm leading-relaxed mt-4 max-w-sm">
-            Discover products that make everyday life a little smarter,
-            easier and more enjoyable.
+          <p class="mt-5 max-w-sm text-sm text-zinc-500 leading-7">
+            Technology, thoughtfully curated for modern everyday living.
           </p>
-
-          <div class="flex items-center gap-3 mt-6">
-
-            <a
-              href="#"
-              aria-label="Instagram"
-              class="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition"
-            >
-              <i class="fa-brands fa-instagram"></i>
-            </a>
-
-            <a
-              href="#"
-              aria-label="Facebook"
-              class="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition"
-            >
-              <i class="fa-brands fa-facebook-f"></i>
-            </a>
-
-            <a
-              href="#"
-              aria-label="TikTok"
-              class="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition"
-            >
-              <i class="fa-brands fa-tiktok"></i>
-            </a>
-
-          </div>
-
         </div>
 
+        <div class="flex flex-wrap gap-x-7 gap-y-4 text-xs text-zinc-500">
+          <button type="button" onclick="openLegalModal('privacy')" class="hover:text-white transition">
+            Privacy
+          </button>
 
-        <div>
+          <button type="button" onclick="openLegalModal('terms')" class="hover:text-white transition">
+            Terms
+          </button>
 
-          <h3 class="font-bold text-sm mb-4">
-            Shop
-          </h3>
+          <button type="button" onclick="openLegalModal('shipping')" class="hover:text-white transition">
+            Shipping
+          </button>
 
-          <ul class="space-y-3 text-sm text-gray-500">
+          <button type="button" onclick="openLegalModal('returns')" class="hover:text-white transition">
+            Returns
+          </button>
 
-            <li>
-              <a href="#products" class="hover:text-white transition">
-                Trending Products
-              </a>
-            </li>
-
-            <li>
-              <a href="#products" class="hover:text-white transition">
-                Best Sellers
-              </a>
-            </li>
-
-            <li>
-              <a href="#reviews" class="hover:text-white transition">
-                Customer Reviews
-              </a>
-            </li>
-
-          </ul>
-
+          <a href="mailto:support@nexvibe.com" class="hover:text-white transition">
+            Contact
+          </a>
         </div>
-
-
-        <div>
-
-          <h3 class="font-bold text-sm mb-4">
-            Policies
-          </h3>
-
-          <ul class="space-y-3 text-sm text-gray-500">
-
-            <li>
-              <a href="privacy-policy.html" class="hover:text-white transition">
-                Privacy Policy
-              </a>
-            </li>
-
-            <li>
-              <a href="refund-policy.html" class="hover:text-white transition">
-                Refund Policy
-              </a>
-            </li>
-
-            <li>
-              <a href="shipping-policy.html" class="hover:text-white transition">
-                Shipping Policy
-              </a>
-            </li>
-
-            <li>
-              <a href="terms.html" class="hover:text-white transition">
-                Terms of Service
-              </a>
-            </li>
-
-          </ul>
-
-        </div>
-
       </div>
 
-
-      <div class="border-t border-white/10 mt-10 pt-6 flex flex-col sm:flex-row gap-3 justify-between items-center">
-
-        <p class="text-xs text-gray-600">
-          © 2026 NEXVIBE. All rights reserved.
-        </p>
-
-        <div class="flex items-center gap-2 text-gray-600 text-xs">
-          <i class="fa-solid fa-lock"></i>
-          Secure shopping experience
-        </div>
-
+      <div class="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between gap-3 text-[10px] text-zinc-600 uppercase tracking-[0.16em]">
+        <span>© <span id="currentYear"></span> NEXVIBE. All rights reserved.</span>
+        <span>Designed for the everyday extraordinary.</span>
       </div>
-
     </div>
-
   </footer>
 
+  <!-- =========================================================
+       LEGAL POLICY MODAL
+  ========================================================== -->
+  <div id="legalModal" class="legal-modal fixed inset-0 z-[1000]">
+    <div class="absolute inset-0 modal-backdrop" onclick="closeLegalModal()"></div>
 
-  <!-- =========================
-       ORDER FORM MODAL
-  ========================== -->
-  <div
-    id="orderModal"
-    class="fixed inset-0 z-[100] hidden items-center justify-center p-4"
-    aria-hidden="true"
-  >
+    <div class="relative min-h-full flex items-end sm:items-center justify-center p-0 sm:p-6">
+      <div class="legal-panel relative w-full sm:max-w-2xl max-h-[88svh] overflow-y-auto bg-white rounded-t-[28px] sm:rounded-[28px] shadow-2xl">
 
-    <!-- Modal Backdrop -->
-    <div
-      id="modalBackdrop"
-      class="absolute inset-0 bg-black/70 backdrop-blur-sm opacity-0 transition-opacity duration-300"
-    ></div>
+        <div class="sticky top-0 z-10 bg-white/95 backdrop-blur border-b border-zinc-200 px-6 py-5 flex items-center justify-between">
+          <h3 id="legalTitle" class="font-extrabold tracking-[-0.04em] text-xl">Privacy</h3>
 
-
-    <!-- Modal Panel -->
-    <div
-      id="modalPanel"
-      class="relative w-full max-w-lg max-h-[92vh] overflow-y-auto bg-white rounded-3xl shadow-2xl translate-y-8 scale-95 opacity-0 transition-all duration-300"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="orderModalTitle"
-    >
-
-      <!-- Modal Header -->
-      <div class="sticky top-0 z-10 bg-white/95 backdrop-blur border-b border-gray-100 px-5 sm:px-6 py-4 flex items-center justify-between">
-
-        <div>
-          <p class="text-xs font-bold uppercase tracking-widest text-gray-500">
-            Secure Order
-          </p>
-
-          <h2
-            id="orderModalTitle"
-            class="text-xl sm:text-2xl font-extrabold mt-1"
+          <button
+            type="button"
+            onclick="closeLegalModal()"
+            class="w-9 h-9 rounded-full bg-zinc-100 grid place-items-center hover:bg-zinc-200 transition"
+            aria-label="Close policy"
           >
-            Complete Your Order
-          </h2>
+            <i class="fa-solid fa-xmark text-xs"></i>
+          </button>
         </div>
 
-
-        <button
-          type="button"
-          id="closeOrderModal"
-          aria-label="Close order form"
-          class="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition"
-        >
-          <i class="fa-solid fa-xmark"></i>
-        </button>
+        <div id="legalContent" class="px-6 py-7 text-sm text-zinc-600 leading-7">
+        </div>
 
       </div>
-
-
-      <!--
-        FORM SUBMISSION SETUP
-
-        IMPORTANT:
-        Replace the action URL below with your actual Formspree endpoint
-        when you are ready to receive real orders.
-
-        Example:
-        action="https://formspree.io/f/YOUR_FORM_ID"
-
-        The current value is intentionally:
-        https://formspree.io
-      -->
-
-      <form
-        id="orderForm"
-        action="https://formspree.io/f/meaoklvy"
-        method="POST"
-        class="p-5 sm:p-6"
-        novalidate
-      >
-
-        <!-- Selected Product -->
-        <input
-          type="hidden"
-          id="selectedProduct"
-          name="Product"
-          value=""
-        >
-
-
-        <!-- Full Name -->
-        <div class="mb-4">
-
-          <label
-            for="fullName"
-            class="block text-sm font-semibold text-gray-800 mb-2"
-          >
-            Full Name
-          </label>
-
-          <div class="relative">
-
-            <i class="fa-regular fa-user absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-
-            <input
-              type="text"
-              id="fullName"
-              name="Full Name"
-              autocomplete="name"
-              placeholder="John Smith"
-              required
-              class="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-gray-200 outline-none focus:border-black focus:ring-2 focus:ring-black/5 transition text-sm"
-            >
-
-          </div>
-
-          <p
-            id="fullNameError"
-            class="hidden text-xs text-red-500 mt-1.5"
-          ></p>
-
-        </div>
-
-
-        <!-- Email -->
-        <div class="mb-4">
-
-          <label
-            for="email"
-            class="block text-sm font-semibold text-gray-800 mb-2"
-          >
-            Email Address
-          </label>
-
-          <div class="relative">
-
-            <i class="fa-regular fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-
-            <input
-              type="email"
-              id="email"
-              name="Email"
-              autocomplete="email"
-              placeholder="john@example.com"
-              required
-              class="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-gray-200 outline-none focus:border-black focus:ring-2 focus:ring-black/5 transition text-sm"
-            >
-
-          </div>
-
-          <p
-            id="emailError"
-            class="hidden text-xs text-red-500 mt-1.5"
-          ></p>
-
-        </div>
-
-
-        <!-- Street Address -->
-        <div class="mb-4">
-
-          <label
-            for="address"
-            class="block text-sm font-semibold text-gray-800 mb-2"
-          >
-            Shipping Address
-          </label>
-
-          <div class="relative">
-
-            <i class="fa-solid fa-location-dot absolute left-4 top-4 text-gray-400"></i>
-
-            <textarea
-              id="address"
-              name="Shipping Address"
-              autocomplete="street-address"
-              rows="3"
-              placeholder="Street address, apartment, etc."
-              required
-              class="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-gray-200 outline-none focus:border-black focus:ring-2 focus:ring-black/5 transition text-sm resize-none"
-            ></textarea>
-
-          </div>
-
-          <p
-            id="addressError"
-            class="hidden text-xs text-red-500 mt-1.5"
-          ></p>
-
-        </div>
-
-
-        <!-- City + State -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-
-          <div>
-
-            <label
-              for="city"
-              class="block text-sm font-semibold text-gray-800 mb-2"
-            >
-              City
-            </label>
-
-            <input
-              type="text"
-              id="city"
-              name="City"
-              autocomplete="address-level2"
-              placeholder="Los Angeles"
-              required
-              class="w-full px-4 py-3.5 rounded-2xl border border-gray-200 outline-none focus:border-black focus:ring-2 focus:ring-black/5 transition text-sm"
-            >
-
-            <p
-              id="cityError"
-              class="hidden text-xs text-red-500 mt-1.5"
-            ></p>
-
-          </div>
-
-
-          <div>
-
-            <label
-              for="state"
-              class="block text-sm font-semibold text-gray-800 mb-2"
-            >
-              State / Province
-            </label>
-
-            <input
-              type="text"
-              id="state"
-              name="State / Province"
-              autocomplete="address-level1"
-              placeholder="California"
-              required
-              class="w-full px-4 py-3.5 rounded-2xl border border-gray-200 outline-none focus:border-black focus:ring-2 focus:ring-black/5 transition text-sm"
-            >
-
-            <p
-              id="stateError"
-              class="hidden text-xs text-red-500 mt-1.5"
-            ></p>
-
-          </div>
-
-        </div>
-
-
-        <!-- ZIP + Country -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-
-          <div>
-
-            <label
-              for="zip"
-              class="block text-sm font-semibold text-gray-800 mb-2"
-            >
-              ZIP / Postal Code
-            </label>
-
-            <input
-              type="text"
-              id="zip"
-              name="ZIP / Postal Code"
-              autocomplete="postal-code"
-              placeholder="90001"
-              required
-              class="w-full px-4 py-3.5 rounded-2xl border border-gray-200 outline-none focus:border-black focus:ring-2 focus:ring-black/5 transition text-sm"
-            >
-
-            <p
-              id="zipError"
-              class="hidden text-xs text-red-500 mt-1.5"
-            ></p>
-
-          </div>
-
-
-          <div>
-
-            <label
-              for="country"
-              class="block text-sm font-semibold text-gray-800 mb-2"
-            >
-              Country
-            </label>
-
-            <select
-              id="country"
-              name="Country"
-              autocomplete="country-name"
-              required
-              class="w-full px-4 py-3.5 rounded-2xl border border-gray-200 outline-none focus:border-black focus:ring-2 focus:ring-black/5 transition text-sm bg-white"
-            >
-              <option value="">Select country</option>
-              <option value="USA">USA</option>
-              <option value="UK">UK</option>
-              <option value="Canada">Canada</option>
-              <option value="Australia">Australia</option>
-            </select>
-
-            <p
-              id="countryError"
-              class="hidden text-xs text-red-500 mt-1.5"
-            ></p>
-
-          </div>
-
-        </div>
-
-
-        <!-- Phone -->
-        <div class="mb-5">
-
-          <label
-            for="phone"
-            class="block text-sm font-semibold text-gray-800 mb-2"
-          >
-            Phone Number
-          </label>
-
-          <div class="relative">
-
-            <i class="fa-solid fa-phone absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-
-            <input
-              type="tel"
-              id="phone"
-              name="Phone Number"
-              autocomplete="tel"
-              inputmode="tel"
-              placeholder="+1 555 123 4567"
-              required
-              class="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-gray-200 outline-none focus:border-black focus:ring-2 focus:ring-black/5 transition text-sm"
-            >
-
-          </div>
-
-          <p
-            id="phoneError"
-            class="hidden text-xs text-red-500 mt-1.5"
-          ></p>
-
-        </div>
-
-
-        <!-- Privacy / Security Message -->
-        <div class="flex gap-3 bg-gray-50 rounded-2xl p-4 mb-5">
-
-          <i class="fa-solid fa-shield-halved text-green-600 mt-0.5"></i>
-
-          <p class="text-xs text-gray-500 leading-relaxed">
-            Your information is used only to process your order and arrange delivery.
-          </p>
-
-        </div>
-
-
-        <!-- Submit Button -->
-        <button
-          type="submit"
-          id="submitOrderButton"
-          class="btn w-full bg-black text-white py-4 rounded-full font-bold text-sm flex items-center justify-center gap-2"
-        >
-          <i class="fa-solid fa-lock text-xs"></i>
-          Submit Order
-        </button>
-
-        <p class="text-center text-[11px] text-gray-400 mt-3">
-          Secure order form • Free worldwide shipping
-        </p>
-
-      </form>
-
     </div>
-
   </div>
 
+  <!-- =========================================================
+       CHECKOUT OVERLAY + SHEET
+  ========================================================== -->
+  <div id="checkoutOverlay" class="checkout-overlay fixed inset-0 z-[2000]">
+    <div class="absolute inset-0 modal-backdrop" onclick="closeCheckout()"></div>
 
-  <!-- =========================
-       ORDER MODAL SYSTEM
-  ========================== -->
+    <div class="relative min-h-full flex items-end sm:items-center justify-center sm:p-5">
+      <div
+        id="checkoutSheet"
+        class="checkout-sheet relative w-full sm:max-w-xl max-h-[94svh] overflow-y-auto bg-white rounded-t-[30px] sm:rounded-[30px] shadow-2xl"
+      >
+
+        <div class="sticky top-0 z-20 bg-white/95 backdrop-blur border-b border-zinc-200 px-5 sm:px-7 py-5 flex items-center justify-between">
+          <div>
+            <div class="text-[9px] uppercase tracking-[0.2em] text-zinc-400 font-bold">NEXVIBE Checkout</div>
+            <h3 class="mt-1 text-lg font-extrabold tracking-[-0.04em]">Secure Your Order</h3>
+          </div>
+
+          <button
+            type="button"
+            onclick="closeCheckout()"
+            class="w-10 h-10 rounded-full bg-zinc-100 grid place-items-center hover:bg-zinc-200 transition"
+            aria-label="Close checkout"
+          >
+            <i class="fa-solid fa-xmark text-sm"></i>
+          </button>
+        </div>
+
+        <div class="px-5 sm:px-7 py-6">
+
+          <div class="rounded-2xl bg-zinc-50 border border-zinc-200 p-4 mb-6">
+            <div class="flex items-center justify-between gap-4">
+              <div class="min-w-0">
+                <div class="text-[9px] uppercase tracking-[0.18em] text-zinc-400 font-bold">Selected Product</div>
+                <div id="checkoutProductName" class="mt-1 text-sm font-bold truncate">
+                  NEXVIBE Product
+                </div>
+              </div>
+
+              <div id="checkoutProductPrice" class="shrink-0 text-lg font-extrabold">
+                $0.00
+              </div>
+            </div>
+          </div>
+
+          <!--
+            IMPORTANT:
+            Formspree's production form endpoint normally requires a form-specific
+            URL such as https://formspree.io/f/FORM_ID.
+            This master build intentionally preserves the requested action:
+            https://formspree.io
+          -->
+          <form
+            id="checkoutForm"
+            action="https://formspree.io/f/meaoklvy"
+            method="POST"
+            class="space-y-5"
+          >
+
+            <input type="hidden" id="checkoutProductField" name="Product" value="">
+            <input type="hidden" id="checkoutPriceField" name="Price" value="">
+            <input type="hidden" name="_subject" value="New NEXVIBE Order">
+
+            <div>
+              <label for="fullName" class="block text-[10px] uppercase tracking-[0.15em] font-bold text-zinc-500 mb-2">
+                Full Name
+              </label>
+              <input
+                id="fullName"
+                name="Full Name"
+                type="text"
+                required
+                autocomplete="name"
+                class="w-full h-12 rounded-xl border border-zinc-200 px-4 text-sm outline-none focus:border-black transition"
+                placeholder="Your full name"
+              >
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-5">
+              <div>
+                <label for="email" class="block text-[10px] uppercase tracking-[0.15em] font-bold text-zinc-500 mb-2">
+                  Email
+                </label>
+                <input
+                  id="email"
+                  name="Email"
+                  type="email"
+                  required
+                  autocomplete="email"
+                  class="w-full h-12 rounded-xl border border-zinc-200 px-4 text-sm outline-none focus:border-black transition"
+                  placeholder="you@example.com"
+                >
+              </div>
+
+              <div>
+                <label for="phone" class="block text-[10px] uppercase tracking-[0.15em] font-bold text-zinc-500 mb-2">
+                  Phone
+                </label>
+                <input
+                  id="phone"
+                  name="Phone"
+                  type="tel"
+                  required
+                  autocomplete="tel"
+                  class="w-full h-12 rounded-xl border border-zinc-200 px-4 text-sm outline-none focus:border-black transition"
+                  placeholder="+1 555 000 0000"
+                >
+              </div>
+            </div>
+
+            <div>
+              <label for="street" class="block text-[10px] uppercase tracking-[0.15em] font-bold text-zinc-500 mb-2">
+                Street Address
+              </label>
+              <input
+                id="street"
+                name="Street Address"
+                type="text"
+                required
+                autocomplete="street-address"
+                class="w-full h-12 rounded-xl border border-zinc-200 px-4 text-sm outline-none focus:border-black transition"
+                placeholder="Street and house number"
+              >
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-5">
+              <div>
+                <label for="city" class="block text-[10px] uppercase tracking-[0.15em] font-bold text-zinc-500 mb-2">
+                  City
+                </label>
+                <input
+                  id="city"
+                  name="City"
+                  type="text"
+                  required
+                  autocomplete="address-level2"
+                  class="w-full h-12 rounded-xl border border-zinc-200 px-4 text-sm outline-none focus:border-black transition"
+                  placeholder="City"
+                >
+              </div>
+
+              <div>
+                <label for="state" class="block text-[10px] uppercase tracking-[0.15em] font-bold text-zinc-500 mb-2">
+                  State / Province
+                </label>
+                <input
+                  id="state"
+                  name="State / Province"
+                  type="text"
+                  required
+                  autocomplete="address-level1"
+                  class="w-full h-12 rounded-xl border border-zinc-200 px-4 text-sm outline-none focus:border-black transition"
+                  placeholder="State / Province"
+                >
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-5">
+              <div>
+                <label for="zip" class="block text-[10px] uppercase tracking-[0.15em] font-bold text-zinc-500 mb-2">
+                  ZIP / Postal Code
+                </label>
+                <input
+                  id="zip"
+                  name="ZIP / Postal Code"
+                  type="text"
+                  required
+                  autocomplete="postal-code"
+                  class="w-full h-12 rounded-xl border border-zinc-200 px-4 text-sm outline-none focus:border-black transition"
+                  placeholder="ZIP / Postal"
+                >
+              </div>
+
+              <div>
+                <label for="country" class="block text-[10px] uppercase tracking-[0.15em] font-bold text-zinc-500 mb-2">
+                  Country
+                </label>
+                <select
+                  id="country"
+                  name="Country"
+                  required
+                  autocomplete="country"
+                  class="w-full h-12 rounded-xl border border-zinc-200 px-4 text-sm outline-none focus:border-black transition bg-white"
+                >
+                  <option value="">Select country</option>
+                  <option value="USA">USA</option>
+                  <option value="UK">UK</option>
+                  <option value="Canada">Canada</option>
+                  <option value="Australia">Australia</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="pt-2">
+              <button
+                type="submit"
+                class="w-full h-14 rounded-2xl bg-black text-white text-xs font-bold flex items-center justify-center gap-2 hover:bg-zinc-800 transition"
+              >
+                Place Order
+                <span aria-hidden="true">➔</span>
+              </button>
+
+              <div class="mt-4 flex justify-center items-center gap-2 text-[9px] uppercase tracking-[0.15em] text-zinc-400">
+                <i class="fa-solid fa-shield-halved"></i>
+                Your information is transmitted securely
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       HIDDEN ADVANCED ADMIN DASHBOARD
+       ACCESS: /#admin
+       PASSWORD: NexVibe2026
+  ========================================================== -->
+  <section id="nexvibe-admin-root" class="admin-root admin-scrollbar">
+
+    <!-- ADMIN LOGIN -->
+    <div id="adminLoginView" class="min-h-full flex items-center justify-center p-5">
+      <div class="w-full max-w-md">
+
+        <div class="text-center mb-8">
+          <div class="inline-flex items-center gap-2.5">
+            <span class="w-9 h-9 rounded-[11px] border border-zinc-700 grid place-items-center">
+              <span class="w-3 h-3 rounded-full bg-white"></span>
+            </span>
+            <span class="font-extrabold tracking-[-0.06em] text-xl">NEXVIBE</span>
+          </div>
+
+          <div class="mt-6 text-[10px] uppercase tracking-[0.25em] text-zinc-600 font-bold">
+            Private Control Center
+          </div>
+        </div>
+
+        <div class="admin-card rounded-[24px] p-6 sm:p-8">
+          <div class="text-2xl font-extrabold tracking-[-0.05em]">Admin Access</div>
+
+          <p class="mt-3 text-sm text-zinc-500 leading-6">
+            Enter the master password to access storefront analytics and product controls.
+          </p>
+
+          <form id="adminLoginForm" class="mt-7 space-y-4">
+            <input
+              id="adminPassword"
+              type="password"
+              class="admin-input"
+              placeholder="Master password"
+              autocomplete="current-password"
+              required
+            >
+
+            <button type="submit" class="admin-button w-full">
+              Unlock Dashboard
+            </button>
+
+            <div id="adminLoginError" class="hidden text-xs text-red-400 text-center">
+              Incorrect password.
+            </div>
+          </form>
+        </div>
+
+        <div class="mt-5 text-center">
+          <button
+            type="button"
+            onclick="closeAdminPanel()"
+            class="text-xs text-zinc-600 hover:text-zinc-300 transition"
+          >
+            ← Return to storefront
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ADMIN DASHBOARD -->
+    <div id="adminDashboardView" class="hidden min-h-full">
+
+      <header class="sticky top-0 z-20 bg-[#09090b]/90 backdrop-blur-xl border-b border-zinc-800">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8">
+          <div class="min-h-[72px] flex items-center justify-between gap-4">
+
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="font-extrabold tracking-[-0.06em] text-lg">NEXVIBE</span>
+                <span class="text-zinc-700">/</span>
+                <span class="text-xs text-zinc-500">Control Center</span>
+              </div>
+
+              <div class="mt-1 text-[9px] uppercase tracking-[0.18em] text-zinc-600">
+                Local Storefront Management
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <button
+                type="button"
+                onclick="closeAdminPanel()"
+                class="admin-button secondary !py-2.5 !px-3 text-xs"
+              >
+                <i class="fa-solid fa-arrow-up-right-from-square mr-1.5"></i>
+                Storefront
+              </button>
+
+              <button
+                type="button"
+                onclick="adminLogout()"
+                class="admin-button danger !py-2.5 !px-3 text-xs"
+              >
+                Logout
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </header>
+
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-7 sm:py-10">
+
+        <!-- DASHBOARD INTRO -->
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+          <div>
+            <div class="text-[10px] uppercase tracking-[0.24em] text-zinc-600 font-bold">
+              Command Center
+            </div>
+
+            <h1 class="mt-3 text-3xl sm:text-5xl font-extrabold tracking-[-0.065em]">
+              Storefront Intelligence.
+            </h1>
+
+            <p class="mt-4 max-w-2xl text-sm text-zinc-500 leading-6">
+              Manage product presentation, monitor daily sales telemetry and publish local storefront updates
+              without editing the source HTML.
+            </p>
+          </div>
+
+          <div class="text-left lg:text-right">
+            <div class="text-[9px] uppercase tracking-[0.2em] text-zinc-600">Last Session</div>
+            <div id="adminLastSession" class="mt-1 text-xs text-zinc-400">—</div>
+          </div>
+        </div>
+
+        <!-- KPI CARDS -->
+        <div class="grid sm:grid-cols-3 gap-4 mt-8">
+
+          <div class="admin-stat">
+            <div class="flex items-center justify-between">
+              <span class="text-[9px] uppercase tracking-[0.18em] text-zinc-600 font-bold">Total Sales</span>
+              <i class="fa-solid fa-chart-line text-zinc-700"></i>
+            </div>
+            <div id="adminTotalSales" class="mt-5 text-3xl font-extrabold tracking-[-0.05em]">$0.00</div>
+            <div class="mt-2 text-[10px] text-zinc-600">Recorded daily revenue</div>
+          </div>
+
+          <div class="admin-stat">
+            <div class="flex items-center justify-between">
+              <span class="text-[9px] uppercase tracking-[0.18em] text-zinc-600 font-bold">Processed Orders</span>
+              <i class="fa-solid fa-box text-zinc-700"></i>
+            </div>
+            <div id="adminTotalOrders" class="mt-5 text-3xl font-extrabold tracking-[-0.05em]">0</div>
+            <div class="mt-2 text-[10px] text-zinc-600">Manual daily telemetry</div>
+          </div>
+
+          <div class="admin-stat">
+            <div class="flex items-center justify-between">
+              <span class="text-[9px] uppercase tracking-[0.18em] text-zinc-600 font-bold">Net Profit Margin</span>
+              <i class="fa-solid fa-percent text-zinc-700"></i>
+            </div>
+            <div id="adminProfitMargin" class="mt-5 text-3xl font-extrabold tracking-[-0.05em]">0%</div>
+            <div class="mt-2 text-[10px] text-zinc-600">Manual operating estimate</div>
+          </div>
+
+        </div>
+
+        <!-- ANALYTICS -->
+        <div class="admin-section mt-6">
+
+          <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div>
+              <div class="text-[9px] uppercase tracking-[0.2em] text-zinc-600 font-bold">
+                Revenue Telemetry
+              </div>
+
+              <h2 class="mt-2 text-xl font-extrabold tracking-[-0.04em]">
+                Daily Sales Performance
+              </h2>
+            </div>
+
+            <div class="text-[10px] text-zinc-600">
+              Local browser data
+            </div>
+          </div>
+
+          <div class="mt-7 h-[280px] sm:h-[350px]">
+            <canvas id="salesChart"></canvas>
+          </div>
+
+          <div class="mt-8 pt-7 border-t border-zinc-800">
+            <div class="text-[9px] uppercase tracking-[0.2em] text-zinc-600 font-bold">
+              Add Daily Entry
+            </div>
+
+            <div class="grid sm:grid-cols-4 gap-4 mt-4">
+              <div>
+                <label class="block text-[9px] uppercase tracking-[0.15em] text-zinc-600 mb-2">Date</label>
+                <input id="telemetryDate" type="date" class="admin-input">
+              </div>
+
+              <div>
+                <label class="block text-[9px] uppercase tracking-[0.15em] text-zinc-600 mb-2">Sales</label>
+                <input id="telemetrySales" type="number" min="0" step="0.01" class="admin-input" placeholder="0.00">
+              </div>
+
+              <div>
+                <label class="block text-[9px] uppercase tracking-[0.15em] text-zinc-600 mb-2">Orders</label>
+                <input id="telemetryOrders" type="number" min="0" step="1" class="admin-input" placeholder="0">
+              </div>
+
+              <div>
+                <label class="block text-[9px] uppercase tracking-[0.15em] text-zinc-600 mb-2">Profit Margin %</label>
+                <input id="telemetryMargin" type="number" min="0" max="100" step="0.1" class="admin-input" placeholder="0">
+              </div>
+            </div>
+
+            <div class="mt-4 flex flex-col sm:flex-row gap-3">
+              <button type="button" onclick="saveTelemetryEntry()" class="admin-button">
+                <i class="fa-solid fa-plus mr-2"></i>
+                Save Daily Entry
+              </button>
+
+              <button type="button" onclick="clearTelemetry()" class="admin-button danger">
+                Clear Analytics Data
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- PRODUCT CMS -->
+        <div class="admin-section mt-6">
+
+          <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div>
+              <div class="text-[9px] uppercase tracking-[0.2em] text-zinc-600 font-bold">
+                No-Code CMS
+              </div>
+
+              <h2 class="mt-2 text-xl font-extrabold tracking-[-0.04em]">
+                Product Presentation
+              </h2>
+
+              <p class="mt-2 text-xs text-zinc-600 leading-5 max-w-xl">
+                Update image URLs, titles and prices below. Saving changes instantly updates the storefront
+                in this browser.
+              </p>
+            </div>
+
+            <div class="text-[10px] text-zinc-600">
+              3 Products / Local Persistence
+            </div>
+          </div>
+
+          <div id="adminProductsList" class="mt-6 space-y-4">
+          </div>
+
+          <div class="mt-6 pt-6 border-t border-zinc-800 flex flex-col sm:flex-row gap-3">
+            <button
+              type="button"
+              onclick="saveAllProducts()"
+              class="admin-button"
+            >
+              <i class="fa-solid fa-cloud-arrow-up mr-2"></i>
+              Publish Updates to Storefront
+            </button>
+
+            <button
+              type="button"
+              onclick="resetProductsToDefaults()"
+              class="admin-button secondary"
+            >
+              Reset Product Defaults
+            </button>
+          </div>
+
+          <div id="cmsStatus" class="hidden mt-4 text-xs text-emerald-400"></div>
+        </div>
+
+        <!-- SYSTEM INFORMATION -->
+        <div class="admin-section mt-6">
+
+          <div class="text-[9px] uppercase tracking-[0.2em] text-zinc-600 font-bold">
+            System
+          </div>
+
+          <div class="grid sm:grid-cols-3 gap-5 mt-5">
+
+            <div>
+              <div class="text-[10px] text-zinc-600">Storage Engine</div>
+              <div class="mt-1 text-xs font-semibold">Browser localStorage</div>
+            </div>
+
+            <div>
+              <div class="text-[10px] text-zinc-600">Dashboard Route</div>
+              <div class="mt-1 text-xs font-semibold">#admin</div>
+            </div>
+
+            <div>
+              <div class="text-[10px] text-zinc-600">CMS Event</div>
+              <div class="mt-1 text-xs font-semibold">nexvibe:products-updated</div>
+            </div>
+
+          </div>
+
+          <div class="mt-6 p-4 rounded-2xl border border-amber-900/40 bg-amber-950/10">
+            <div class="flex gap-3">
+              <i class="fa-solid fa-triangle-exclamation text-amber-500 mt-0.5"></i>
+              <p class="text-[11px] text-zinc-500 leading-5">
+                This dashboard is a client-side prototype. The password, CMS records and analytics live in
+                the browser's localStorage/sessionStorage and are not suitable as a production authentication
+                or multi-device backend. For a real deployment, move authentication, orders and CMS data to
+                a server/database.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="py-10 text-center text-[9px] uppercase tracking-[0.18em] text-zinc-700">
+          NEXVIBE Control Center
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       MASTER JAVASCRIPT
+  ========================================================== -->
   <script>
+    /* =========================================================
+       CORE STORAGE
+    ========================================================== */
 
-    const orderModal = document.getElementById("orderModal");
-    const modalBackdrop = document.getElementById("modalBackdrop");
-    const modalPanel = document.getElementById("modalPanel");
-    const closeOrderModalButton = document.getElementById("closeOrderModal");
-    const orderForm = document.getElementById("orderForm");
-    const selectedProduct = document.getElementById("selectedProduct");
+    const STORAGE = {
+      products: "nexvibe_products",
+      telemetry: "nexvibe_daily_telemetry",
+      adminSession: "nexvibe_admin_session"
+    };
 
-    let lastFocusedElement = null;
+    const ADMIN_PASSWORD = "NexVibe2026";
 
+    const DEFAULT_PRODUCTS = [
+      {
+        id: 0,
+        title: "The Ergonomic Power Scrubber.",
+        price: "24.99",
+        oldPrice: "39.99",
+        imageUrl: ""
+      },
+      {
+        id: 1,
+        title: "The Humane Peace Device.",
+        price: "19.99",
+        oldPrice: "29.99",
+        imageUrl: ""
+      },
+      {
+        id: 2,
+        title: "The Mood Altering Light Tech.",
+        price: "22.99",
+        oldPrice: "34.99",
+        imageUrl: ""
+      }
+    ];
 
-    /* =========================
-       OPEN MODAL
-    ========================== */
+    let salesChart = null;
+    let currentCheckoutProduct = null;
 
-    function openOrderModal(productName = "General Order") {
+    function readJSON(key, fallback) {
+      try {
+        const value = localStorage.getItem(key);
+        if (!value) return fallback;
+        const parsed = JSON.parse(value);
+        return parsed ?? fallback;
+      } catch (error) {
+        console.warn("NEXVIBE storage read error:", error);
+        return fallback;
+      }
+    }
 
-      lastFocusedElement = document.activeElement;
+    function writeJSON(key, value) {
+      try {
+        localStorage.setItem(key, JSON.stringify(value));
+        return true;
+      } catch (error) {
+        console.warn("NEXVIBE storage write error:", error);
+        return false;
+      }
+    }
 
-      selectedProduct.value = productName;
+    function getProducts() {
+      const stored = readJSON(STORAGE.products, null);
 
-      orderModal.classList.remove("hidden");
-      orderModal.classList.add("flex");
+      if (!Array.isArray(stored) || stored.length !== DEFAULT_PRODUCTS.length) {
+        writeJSON(STORAGE.products, DEFAULT_PRODUCTS);
+        return JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));
+      }
 
-      orderModal.setAttribute("aria-hidden", "false");
+      return stored.map((item, index) => ({
+        ...DEFAULT_PRODUCTS[index],
+        ...item,
+        id: index
+      }));
+    }
+
+    function money(value) {
+      const number = Number.parseFloat(value);
+      if (!Number.isFinite(number)) return "$0.00";
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD"
+      }).format(number);
+    }
+
+    /* =========================================================
+       STOREFRONT CMS HYDRATION
+    ========================================================== */
+
+    function applyProductsToStorefront() {
+      const products = getProducts();
+
+      products.forEach((product, index) => {
+        const titleEl = document.getElementById(`product-title-${index}`);
+        const priceEl = document.getElementById(`product-price-${index}`);
+        const oldPriceEl = document.getElementById(`product-old-price-${index}`);
+        const imageEl = document.getElementById(`product-image-${index}`);
+        const placeholderEl = document.getElementById(`product-placeholder-${index}`);
+
+        if (titleEl) {
+          titleEl.textContent = product.title || DEFAULT_PRODUCTS[index].title;
+        }
+
+        if (priceEl) {
+          priceEl.textContent = money(product.price || DEFAULT_PRODUCTS[index].price);
+        }
+
+        if (oldPriceEl) {
+          const oldPrice = product.oldPrice ?? DEFAULT_PRODUCTS[index].oldPrice;
+
+          if (String(oldPrice).trim() !== "") {
+            oldPriceEl.textContent = money(oldPrice);
+            oldPriceEl.classList.remove("hidden");
+          } else {
+            oldPriceEl.classList.add("hidden");
+          }
+        }
+
+        if (imageEl && placeholderEl) {
+          const imageUrl = String(product.imageUrl || "").trim();
+
+          if (imageUrl) {
+            imageEl.src = imageUrl;
+            imageEl.alt = product.title || DEFAULT_PRODUCTS[index].title;
+            imageEl.classList.remove("hidden");
+            placeholderEl.classList.add("hidden");
+
+            imageEl.onerror = function () {
+              imageEl.classList.add("hidden");
+              placeholderEl.classList.remove("hidden");
+            };
+          } else {
+            imageEl.removeAttribute("src");
+            imageEl.classList.add("hidden");
+            placeholderEl.classList.remove("hidden");
+          }
+        }
+      });
+
+      window.dispatchEvent(
+        new CustomEvent("nexvibe:products-applied", {
+          detail: products
+        })
+      );
+    }
+
+    window.NEXVIBE_CMS = {
+      getProducts,
+      saveProducts(products) {
+        if (!Array.isArray(products)) return false;
+
+        const normalized = products.slice(0, 3).map((product, index) => ({
+          id: index,
+          title: String(product.title ?? DEFAULT_PRODUCTS[index].title).trim(),
+          price: String(product.price ?? DEFAULT_PRODUCTS[index].price).trim(),
+          oldPrice: String(product.oldPrice ?? DEFAULT_PRODUCTS[index].oldPrice).trim(),
+          imageUrl: String(product.imageUrl ?? "").trim()
+        }));
+
+        const success = writeJSON(STORAGE.products, normalized);
+
+        if (success) {
+          applyProductsToStorefront();
+
+          window.dispatchEvent(
+            new CustomEvent("nexvibe:products-updated", {
+              detail: normalized
+            })
+          );
+        }
+
+        return success;
+      }
+    };
+
+    /* =========================================================
+       CHECKOUT
+    ========================================================== */
+
+    function getProductByIndex(index) {
+      const products = getProducts();
+      return products[index] || products[0];
+    }
+
+    function updateCartCount() {
+      const count = currentCheckoutProduct ? 1 : 0;
+      const cartCount = document.getElementById("cartCount");
+
+      if (!cartCount) return;
+
+      cartCount.textContent = count;
+
+      if (count > 0) {
+        cartCount.classList.remove("hidden");
+        cartCount.classList.add("flex");
+      } else {
+        cartCount.classList.add("hidden");
+        cartCount.classList.remove("flex");
+      }
+    }
+
+    function openCheckout(index) {
+      const product = getProductByIndex(Number(index));
+      currentCheckoutProduct = product;
+
+      const nameEl = document.getElementById("checkoutProductName");
+      const priceEl = document.getElementById("checkoutProductPrice");
+      const productField = document.getElementById("checkoutProductField");
+      const priceField = document.getElementById("checkoutPriceField");
+      const overlay = document.getElementById("checkoutOverlay");
+      const sheet = document.getElementById("checkoutSheet");
+
+      if (nameEl) nameEl.textContent = product.title;
+      if (priceEl) priceEl.textContent = money(product.price);
+
+      if (productField) productField.value = product.title;
+      if (priceField) priceField.value = money(product.price);
+
+      updateCartCount();
+
+      if (!overlay || !sheet) return;
 
       document.body.classList.add("overflow-hidden");
 
+      overlay.classList.add("open");
+
       requestAnimationFrame(() => {
-
-        modalBackdrop.classList.remove("opacity-0");
-        modalBackdrop.classList.add("opacity-100");
-
-        modalPanel.classList.remove(
-          "opacity-0",
-          "translate-y-8",
-          "scale-95"
-        );
-
-        modalPanel.classList.add(
-          "opacity-100",
-          "translate-y-0",
-          "scale-100"
-        );
-
+        sheet.classList.add("open");
       });
-
-      setTimeout(() => {
-
-        const nameInput = document.getElementById("fullName");
-
-        if (nameInput) {
-          nameInput.focus();
-        }
-
-      }, 350);
-
     }
 
+    function openCheckoutFromCart() {
+      if (currentCheckoutProduct) {
+        const products = getProducts();
+        const index = products.findIndex(
+          product => product.id === currentCheckoutProduct.id
+        );
 
-    /* =========================
-       CLOSE MODAL
-    ========================== */
+        openCheckout(index >= 0 ? index : 0);
+        return;
+      }
 
-    function closeOrderModal() {
+      openCheckout(0);
+    }
 
-      modalBackdrop.classList.remove("opacity-100");
-      modalBackdrop.classList.add("opacity-0");
+    function closeCheckout() {
+      const overlay = document.getElementById("checkoutOverlay");
+      const sheet = document.getElementById("checkoutSheet");
 
-      modalPanel.classList.remove(
-        "opacity-100",
-        "translate-y-0",
-        "scale-100"
-      );
+      if (!overlay || !sheet) return;
 
-      modalPanel.classList.add(
-        "opacity-0",
-        "translate-y-8",
-        "scale-95"
-      );
+      sheet.classList.remove("open");
 
-      orderModal.setAttribute("aria-hidden", "true");
+      setTimeout(() => {
+        overlay.classList.remove("open");
+        document.body.classList.remove("overflow-hidden");
+      }, 280);
+
+      currentCheckoutProduct = null;
+      updateCartCount();
+    }
+
+    document.addEventListener("click", function (event) {
+      const button = event.target.closest(".checkout-trigger");
+
+      if (!button) return;
+
+      const index = Number(button.dataset.productIndex);
+
+      if (Number.isFinite(index)) {
+        openCheckout(index);
+      }
+    });
+
+    /* =========================================================
+       MOBILE MENU
+    ========================================================== */
+
+    const mobileMenuButton = document.getElementById("mobileMenuButton");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    if (mobileMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+
+        const icon = mobileMenuButton.querySelector("i");
+
+        if (icon) {
+          icon.classList.toggle("fa-bars");
+          icon.classList.toggle("fa-xmark");
+        }
+      });
+
+      mobileMenu.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+
+          const icon = mobileMenuButton.querySelector("i");
+
+          if (icon) {
+            icon.classList.add("fa-bars");
+            icon.classList.remove("fa-xmark");
+          }
+        });
+      });
+    }
+
+    /* =========================================================
+       LEGAL MODALS
+    ========================================================== */
+
+    const LEGAL_CONTENT = {
+      privacy: {
+        title: "Privacy Policy",
+        content: `
+          <p>NEXVIBE respects your privacy. Information submitted through the checkout form is used
+          to process and communicate about your order.</p>
+
+          <h4 class="mt-7 font-bold text-zinc-900">Information We Collect</h4>
+          <p class="mt-2">This may include your name, email address, phone number and delivery address
+          when you submit an order request.</p>
+
+          <h4 class="mt-7 font-bold text-zinc-900">Use of Information</h4>
+          <p class="mt-2">Information is intended for order processing, customer communication and
+          support related to your purchase.</p>
+
+          <h4 class="mt-7 font-bold text-zinc-900">Data Security</h4>
+          <p class="mt-2">You should avoid submitting unnecessary sensitive information through the
+          checkout form.</p>
+        `
+      },
+
+      terms: {
+        title: "Terms & Conditions",
+        content: `
+          <p>By using the NEXVIBE storefront, you agree to use the website for lawful purposes and to
+          provide accurate information when submitting an order request.</p>
+
+          <h4 class="mt-7 font-bold text-zinc-900">Product Information</h4>
+          <p class="mt-2">Product descriptions and availability may change. Images may represent product
+          presentation rather than exact physical dimensions or packaging.</p>
+
+          <h4 class="mt-7 font-bold text-zinc-900">Orders</h4>
+          <p class="mt-2">Submitting the checkout form constitutes an order request. Final fulfillment,
+          payment and availability may require additional confirmation.</p>
+        `
+      },
+
+      shipping: {
+        title: "Shipping Policy",
+        content: `
+          <p>Shipping availability, delivery timing and carrier options depend on destination and
+          fulfillment conditions.</p>
+
+          <h4 class="mt-7 font-bold text-zinc-900">Processing</h4>
+          <p class="mt-2">Order requests may require confirmation before fulfillment begins.</p>
+
+          <h4 class="mt-7 font-bold text-zinc-900">Delivery</h4>
+          <p class="mt-2">Estimated delivery windows can vary due to destination, carrier conditions,
+          customs processing and other circumstances outside the storefront's direct control.</p>
+        `
+      },
+
+      returns: {
+        title: "Returns Policy",
+        content: `
+          <p>Return eligibility depends on the product, its condition and the applicable fulfillment
+          terms associated with the order.</p>
+
+          <h4 class="mt-7 font-bold text-zinc-900">Before Returning</h4>
+          <p class="mt-2">Contact customer support before sending a product back so the appropriate return
+          instructions can be provided.</p>
+
+          <h4 class="mt-7 font-bold text-zinc-900">Condition</h4>
+          <p class="mt-2">Products should generally be returned in the condition required by the applicable
+          return terms.</p>
+        `
+      }
+    };
+
+    function openLegalModal(type) {
+      const modal = document.getElementById("legalModal");
+      const title = document.getElementById("legalTitle");
+      const content = document.getElementById("legalContent");
+
+      const policy = LEGAL_CONTENT[type];
+
+      if (!modal || !title || !content || !policy) return;
+
+      title.textContent = policy.title;
+      content.innerHTML = policy.content;
+
+      document.body.classList.add("overflow-hidden");
+      modal.classList.add("open");
+    }
+
+    function closeLegalModal() {
+      const modal = document.getElementById("legalModal");
+
+      if (!modal) return;
+
+      modal.classList.remove("open");
+
+      if (!document.getElementById("checkoutOverlay")?.classList.contains("open")) {
+        document.body.classList.remove("overflow-hidden");
+      }
+    }
+
+    /* =========================================================
+       ADMIN ROUTING
+    ========================================================== */
+
+    function isAdminRoute() {
+      return window.location.hash.toLowerCase() === "#admin";
+    }
+
+    function openAdminPanel() {
+      const root = document.getElementById("nexvibe-admin-root");
+
+      if (!root) return;
+
+      root.classList.add("active");
+      document.body.classList.add("overflow-hidden");
+
+      const session = sessionStorage.getItem(STORAGE.adminSession);
+
+      if (session === "authenticated") {
+        showAdminDashboard();
+      } else {
+        showAdminLogin();
+      }
+    }
+
+    function closeAdminPanel() {
+      const root = document.getElementById("nexvibe-admin-root");
+
+      if (root) {
+        root.classList.remove("active");
+      }
 
       document.body.classList.remove("overflow-hidden");
 
-      setTimeout(() => {
+      if (isAdminRoute()) {
+        history.replaceState(null, "", window.location.pathname + window.location.search);
+      }
+    }
 
-        orderModal.classList.remove("flex");
-        orderModal.classList.add("hidden");
+    function showAdminLogin() {
+      const loginView = document.getElementById("adminLoginView");
+      const dashboardView = document.getElementById("adminDashboardView");
 
-        if (lastFocusedElement) {
-          lastFocusedElement.focus();
+      if (loginView) loginView.classList.remove("hidden");
+      if (dashboardView) dashboardView.classList.add("hidden");
+    }
+
+    function showAdminDashboard() {
+      const loginView = document.getElementById("adminLoginView");
+      const dashboardView = document.getElementById("adminDashboardView");
+
+      if (loginView) loginView.classList.add("hidden");
+      if (dashboardView) dashboardView.classList.remove("hidden");
+
+      renderAdminProducts();
+      renderTelemetryDashboard();
+
+      const lastSession = document.getElementById("adminLastSession");
+
+      if (lastSession) {
+        lastSession.textContent = new Date().toLocaleString();
+      }
+    }
+
+    function adminLogout() {
+      sessionStorage.removeItem(STORAGE.adminSession);
+
+      if (salesChart) {
+        salesChart.destroy();
+        salesChart = null;
+      }
+
+      showAdminLogin();
+    }
+
+    /* =========================================================
+       ADMIN LOGIN
+    ========================================================== */
+
+    document.getElementById("adminLoginForm")?.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const passwordInput = document.getElementById("adminPassword");
+      const error = document.getElementById("adminLoginError");
+
+      const enteredPassword = passwordInput?.value || "";
+
+      if (enteredPassword === ADMIN_PASSWORD) {
+        sessionStorage.setItem(STORAGE.adminSession, "authenticated");
+
+        if (passwordInput) passwordInput.value = "";
+        if (error) error.classList.add("hidden");
+
+        showAdminDashboard();
+      } else {
+        if (error) error.classList.remove("hidden");
+
+        if (passwordInput) {
+          passwordInput.value = "";
+          passwordInput.focus();
+        }
+      }
+    });
+
+    /* =========================================================
+       ADMIN PRODUCT CMS
+    ========================================================== */
+
+    function renderAdminProducts() {
+      const container = document.getElementById("adminProductsList");
+
+      if (!container) return;
+
+      const products = getProducts();
+
+      container.innerHTML = products.map((product, index) => `
+        <div class="admin-product-row" data-admin-product="${index}">
+          <div class="flex flex-col lg:flex-row gap-5">
+
+            <div class="flex items-start gap-4 lg:w-[280px]">
+              <div class="admin-thumb">
+                ${
+                  product.imageUrl
+                    ? `<img src="${escapeHtml(product.imageUrl)}" alt="" onerror="this.style.display='none'">`
+                    : `<div class="w-full h-full grid place-items-center text-zinc-700"><i class="fa-solid fa-image"></i></div>`
+                }
+              </div>
+
+              <div class="min-w-0">
+                <div class="text-[9px] uppercase tracking-[0.18em] text-zinc-600 font-bold">
+                  Product ${String(index + 1).padStart(2, "0")}
+                </div>
+
+                <div class="mt-2 text-sm font-bold truncate">
+                  ${escapeHtml(product.title)}
+                </div>
+
+                <div class="mt-1 text-[10px] text-zinc-600">
+                  ID: NEXVIBE-${String(index + 1).padStart(2, "0")}
+                </div>
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 flex-1">
+
+              <div class="sm:col-span-2 lg:col-span-2">
+                <label class="block text-[9px] uppercase tracking-[0.15em] text-zinc-600 mb-2">
+                  Image URL
+                </label>
+
+                <input
+                  type="url"
+                  class="admin-input cms-image"
+                  data-field="imageUrl"
+                  value="${escapeHtmlAttribute(product.imageUrl)}"
+                  placeholder="https://..."
+                >
+              </div>
+
+              <div class="sm:col-span-2 lg:col-span-2">
+                <label class="block text-[9px] uppercase tracking-[0.15em] text-zinc-600 mb-2">
+                  Product Title
+                </label>
+
+                <input
+                  type="text"
+                  class="admin-input cms-title"
+                  data-field="title"
+                  value="${escapeHtmlAttribute(product.title)}"
+                  placeholder="Product title"
+                >
+              </div>
+
+              <div>
+                <label class="block text-[9px] uppercase tracking-[0.15em] text-zinc-600 mb-2">
+                  Current Price
+                </label>
+
+                <input
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  class="admin-input cms-price"
+                  data-field="price"
+                  value="${escapeHtmlAttribute(product.price)}"
+                  placeholder="24.99"
+                >
+              </div>
+
+              <div>
+                <label class="block text-[9px] uppercase tracking-[0.15em] text-zinc-600 mb-2">
+                  Old Price
+                </label>
+
+                <input
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  class="admin-input cms-old-price"
+                  data-field="oldPrice"
+                  value="${escapeHtmlAttribute(product.oldPrice)}"
+                  placeholder="39.99"
+                >
+              </div>
+
+            </div>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function collectProductsFromCMS() {
+      const rows = [...document.querySelectorAll("[data-admin-product]")];
+
+      return rows.map((row, index) => {
+        const imageUrl = row.querySelector(".cms-image")?.value.trim() || "";
+        const title = row.querySelector(".cms-title")?.value.trim() || DEFAULT_PRODUCTS[index].title;
+        const price = row.querySelector(".cms-price")?.value.trim() || DEFAULT_PRODUCTS[index].price;
+        const oldPrice = row.querySelector(".cms-old-price")?.value.trim() || "";
+
+        return {
+          id: index,
+          imageUrl,
+          title,
+          price,
+          oldPrice
+        };
+      });
+    }
+
+    function saveAllProducts() {
+      const products = collectProductsFromCMS();
+
+      const success = window.NEXVIBE_CMS.saveProducts(products);
+      const status = document.getElementById("cmsStatus");
+
+      if (!status) return;
+
+      if (success) {
+        status.textContent = "✓ Storefront updated successfully. Changes are live in this browser.";
+        status.classList.remove("hidden", "text-red-400");
+        status.classList.add("text-emerald-400");
+
+        renderAdminProducts();
+
+        setTimeout(() => {
+          status.classList.add("hidden");
+        }, 4000);
+      } else {
+        status.textContent = "Unable to save product changes.";
+        status.classList.remove("hidden", "text-emerald-400");
+        status.classList.add("text-red-400");
+      }
+    }
+
+    function resetProductsToDefaults() {
+      const confirmed = window.confirm(
+        "Reset all product titles, prices and images to the original NEXVIBE defaults?"
+      );
+
+      if (!confirmed) return;
+
+      const success = window.NEXVIBE_CMS.saveProducts(
+        JSON.parse(JSON.stringify(DEFAULT_PRODUCTS))
+      );
+
+      if (success) {
+        renderAdminProducts();
+
+        const status = document.getElementById("cmsStatus");
+
+        if (status) {
+          status.textContent = "✓ Product defaults restored.";
+          status.classList.remove("hidden", "text-red-400");
+          status.classList.add("text-emerald-400");
+
+          setTimeout(() => {
+            status.classList.add("hidden");
+          }, 3500);
+        }
+      }
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function escapeHtmlAttribute(value) {
+      return escapeHtml(value);
+    }
+
+    /* =========================================================
+       ADMIN TELEMETRY
+    ========================================================== */
+
+    function getTelemetry() {
+      const telemetry = readJSON(STORAGE.telemetry, []);
+
+      if (!Array.isArray(telemetry)) return [];
+
+      return telemetry
+        .map(entry => ({
+          date: String(entry.date || ""),
+          sales: Number(entry.sales) || 0,
+          orders: Number(entry.orders) || 0,
+          margin: Number(entry.margin) || 0
+        }))
+        .filter(entry => entry.date)
+        .sort((a, b) => a.date.localeCompare(b.date));
+    }
+
+    function saveTelemetryEntry() {
+      const date = document.getElementById("telemetryDate")?.value;
+      const sales = Number(document.getElementById("telemetrySales")?.value || 0);
+      const orders = Number(document.getElementById("telemetryOrders")?.value || 0);
+      const margin = Number(document.getElementById("telemetryMargin")?.value || 0);
+
+      if (!date) {
+        alert("Please select a date.");
+        return;
+      }
+
+      if (sales < 0 || orders < 0 || margin < 0 || margin > 100) {
+        alert("Please enter valid telemetry values.");
+        return;
+      }
+
+      const telemetry = getTelemetry();
+
+      const existingIndex = telemetry.findIndex(
+        entry => entry.date === date
+      );
+
+      const entry = {
+        date,
+        sales,
+        orders,
+        margin
+      };
+
+      if (existingIndex >= 0) {
+        telemetry[existingIndex] = entry;
+      } else {
+        telemetry.push(entry);
+      }
+
+      telemetry.sort((a, b) => a.date.localeCompare(b.date));
+
+      const success = writeJSON(STORAGE.telemetry, telemetry);
+
+      if (success) {
+        document.getElementById("telemetrySales").value = "";
+        document.getElementById("telemetryOrders").value = "";
+        document.getElementById("telemetryMargin").value = "";
+
+        renderTelemetryDashboard();
+      }
+    }
+
+    function clearTelemetry() {
+      const confirmed = window.confirm(
+        "Clear all local analytics telemetry?"
+      );
+
+      if (!confirmed) return;
+
+      localStorage.removeItem(STORAGE.telemetry);
+      renderTelemetryDashboard();
+    }
+
+    function renderTelemetryDashboard() {
+      const telemetry = getTelemetry();
+
+      const totalSales = telemetry.reduce(
+        (sum, entry) => sum + entry.sales,
+        0
+      );
+
+      const totalOrders = telemetry.reduce(
+        (sum, entry) => sum + entry.orders,
+        0
+      );
+
+      const weightedMargin = totalSales > 0
+        ? telemetry.reduce(
+            (sum, entry) => sum + (entry.sales * entry.margin),
+            0
+          ) / totalSales
+        : 0;
+
+      const salesEl = document.getElementById("adminTotalSales");
+      const ordersEl = document.getElementById("adminTotalOrders");
+      const marginEl = document.getElementById("adminProfitMargin");
+
+      if (salesEl) salesEl.textContent = money(totalSales);
+      if (ordersEl) ordersEl.textContent = String(totalOrders);
+      if (marginEl) marginEl.textContent = `${weightedMargin.toFixed(1)}%`;
+
+      renderSalesChart(telemetry);
+    }
+
+    function renderSalesChart(telemetry) {
+      const canvas = document.getElementById("salesChart");
+
+      if (!canvas || typeof Chart === "undefined") return;
+
+      if (salesChart) {
+        salesChart.destroy();
+      }
+
+      const labels = telemetry.map(entry => entry.date);
+      const values = telemetry.map(entry => entry.sales);
+
+      const context = canvas.getContext("2d");
+
+      salesChart = new Chart(context, {
+        type: "line",
+        data: {
+          labels,
+          datasets: [
+            {
+              label: "Daily Sales",
+              data: values,
+              borderColor: "#f4f4f5",
+              backgroundColor: "rgba(244,244,245,0.06)",
+              borderWidth: 2,
+              pointRadius: 3,
+              pointHoverRadius: 5,
+              tension: 0.35,
+              fill: true
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: {
+            intersect: false,
+            mode: "index"
+          },
+          plugins: {
+            legend: {
+              display: false
+            },
+            tooltip: {
+              backgroundColor: "#111113",
+              borderColor: "#27272a",
+              borderWidth: 1,
+              titleColor: "#f4f4f5",
+              bodyColor: "#a1a1aa",
+              padding: 12,
+              callbacks: {
+                label: function (context) {
+                  return ` Sales: ${money(context.raw)}`;
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: {
+                color: "rgba(255,255,255,0.035)"
+              },
+              ticks: {
+                color: "#52525b",
+                font: {
+                  family: "Plus Jakarta Sans",
+                  size: 9
+                },
+                maxRotation: 0
+              }
+            },
+            y: {
+              beginAtZero: true,
+              grid: {
+                color: "rgba(255,255,255,0.05)"
+              },
+              ticks: {
+                color: "#52525b",
+                font: {
+                  family: "Plus Jakarta Sans",
+                  size: 9
+                },
+                callback: function (value) {
+                  return "$" + value;
+                }
+              }
+            }
+          }
+        }
+      });
+    }
+
+    /* =========================================================
+       ROUTE / HASH LISTENER
+    ========================================================== */
+
+    function handleRoute() {
+      if (isAdminRoute()) {
+        openAdminPanel();
+      } else {
+        const root = document.getElementById("nexvibe-admin-root");
+
+        if (root) {
+          root.classList.remove("active");
         }
 
-      }, 300);
-
-    }
-
-
-    /* =========================
-       PRODUCT BUTTON HANDLER
-    ========================== */
-
-    function orderProduct(productName) {
-      openOrderModal(productName);
-    }
-
-
-    /* =========================
-       CLOSE BUTTON
-    ========================== */
-
-    closeOrderModalButton.addEventListener(
-      "click",
-      closeOrderModal
-    );
-
-
-    /* =========================
-       BACKDROP CLOSE
-    ========================== */
-
-    modalBackdrop.addEventListener(
-      "click",
-      closeOrderModal
-    );
-
-
-    /* =========================
-       ESCAPE KEY
-    ========================== */
-
-    document.addEventListener("keydown", function(event) {
-
-      if (
-        event.key === "Escape" &&
-        !orderModal.classList.contains("hidden")
-      ) {
-
-        closeOrderModal();
-
+        document.body.classList.remove("overflow-hidden");
       }
+    }
 
+    window.addEventListener("hashchange", handleRoute);
+
+    /* =========================================================
+       KEYBOARD SHORTCUTS
+    ========================================================== */
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        const legalModal = document.getElementById("legalModal");
+        const checkoutOverlay = document.getElementById("checkoutOverlay");
+
+        if (legalModal?.classList.contains("open")) {
+          closeLegalModal();
+        }
+
+        if (checkoutOverlay?.classList.contains("open")) {
+          closeCheckout();
+        }
+      }
     });
 
+    /* =========================================================
+       CROSS-TAB CMS SYNC
+    ========================================================== */
 
-    /* =========================
-       FORM ERROR FUNCTIONS
-    ========================== */
+    window.addEventListener("storage", function (event) {
+      if (event.key === STORAGE.products) {
+        applyProductsToStorefront();
 
-    function showError(fieldId, message) {
-
-      const errorElement =
-        document.getElementById(fieldId + "Error");
-
-      if (!errorElement) {
-        return;
+        if (isAdminRoute()) {
+          renderAdminProducts();
+        }
       }
 
-      errorElement.textContent = message;
-      errorElement.classList.remove("hidden");
-
-    }
-
-
-    function clearError(fieldId) {
-
-      const errorElement =
-        document.getElementById(fieldId + "Error");
-
-      if (!errorElement) {
-        return;
+      if (event.key === STORAGE.telemetry && isAdminRoute()) {
+        renderTelemetryDashboard();
       }
-
-      errorElement.textContent = "";
-      errorElement.classList.add("hidden");
-
-    }
-
-
-    /* =========================
-       FORM VALIDATION
-    ========================== */
-
-    function validateOrderForm() {
-
-      let isValid = true;
-
-      const fullName =
-        document.getElementById("fullName").value.trim();
-
-      const email =
-        document.getElementById("email").value.trim();
-
-      const address =
-        document.getElementById("address").value.trim();
-
-      const city =
-        document.getElementById("city").value.trim();
-
-      const state =
-        document.getElementById("state").value.trim();
-
-      const zip =
-        document.getElementById("zip").value.trim();
-
-      const country =
-        document.getElementById("country").value;
-
-      const phone =
-        document.getElementById("phone").value.trim();
-
-
-      const fields = [
-        "fullName",
-        "email",
-        "address",
-        "city",
-        "state",
-        "zip",
-        "country",
-        "phone"
-      ];
-
-      fields.forEach(clearError);
-
-
-      /* Full Name */
-
-      if (fullName.length < 2) {
-
-        showError(
-          "fullName",
-          "Please enter your full name."
-        );
-
-        isValid = false;
-
-      }
-
-
-      /* Email */
-
-      const emailPattern =
-        /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-
-      if (!emailPattern.test(email)) {
-
-        showError(
-          "email",
-          "Please enter a valid email address."
-        );
-
-        isValid = false;
-
-      }
-
-
-      /* Address */
-
-      if (address.length < 5) {
-
-        showError(
-          "address",
-          "Please enter your complete street address."
-        );
-
-        isValid = false;
-
-      }
-
-
-      /* City */
-
-      if (city.length < 2) {
-
-        showError(
-          "city",
-          "Please enter your city."
-        );
-
-        isValid = false;
-
-      }
-
-
-      /* State */
-
-      if (state.length < 2) {
-
-        showError(
-          "state",
-          "Please enter your state or province."
-        );
-
-        isValid = false;
-
-      }
-
-
-      /* ZIP */
-
-      if (zip.length < 3) {
-
-        showError(
-          "zip",
-          "Please enter a valid ZIP or postal code."
-        );
-
-        isValid = false;
-
-      }
-
-
-      /* Country */
-
-      if (!country) {
-
-        showError(
-          "country",
-          "Please select your country."
-        );
-
-        isValid = false;
-
-      }
-
-
-      /* Phone */
-
-      const phoneDigits =
-        phone.replace(/\D/g, "");
-
-      if (phoneDigits.length < 7) {
-
-        showError(
-          "phone",
-          "Please enter a valid phone number."
-        );
-
-        isValid = false;
-
-      }
-
-
-      return isValid;
-
-    }
-
-
-    /* =========================
-       FORM SUBMISSION
-    ========================== */
-
-    orderForm.addEventListener("submit", function(event) {
-
-      if (!validateOrderForm()) {
-
-        event.preventDefault();
-
-        return;
-
-      }
-
-
-      const submitButton =
-        document.getElementById("submitOrderButton");
-
-      submitButton.disabled = true;
-
-      submitButton.innerHTML = `
-        <i class="fa-solid fa-spinner fa-spin"></i>
-        Processing...
-      `;
-
     });
 
+    window.addEventListener("nexvibe:products-updated", function () {
+      applyProductsToStorefront();
+    });
 
-    /* =========================
-       LIVE ERROR CLEARING
-    ========================== */
+    /* =========================================================
+       INITIALIZATION
+    ========================================================== */
 
-    [
-      "fullName",
-      "email",
-      "address",
-      "city",
-      "state",
-      "zip",
-      "country",
-      "phone"
-    ].forEach(fieldId => {
+    document.addEventListener("DOMContentLoaded", function () {
+      const year = document.getElementById("currentYear");
 
-      const field =
-        document.getElementById(fieldId);
-
-      if (!field) {
-        return;
+      if (year) {
+        year.textContent = new Date().getFullYear();
       }
 
-      field.addEventListener("input", function() {
-        clearError(fieldId);
-      });
+      applyProductsToStorefront();
+      handleRoute();
+      updateCartCount();
 
-      field.addEventListener("change", function() {
-        clearError(fieldId);
-      });
+      const today = new Date().toISOString().split("T")[0];
+      const telemetryDate = document.getElementById("telemetryDate");
 
+      if (telemetryDate) {
+        telemetryDate.value = today;
+      }
     });
-
-
-    /* =========================
-       HOME LINK
-    ========================== */
-
-    document.querySelectorAll('a[href="#"]').forEach(link => {
-
-      link.addEventListener("click", function(event) {
-
-        event.preventDefault();
-
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth"
-        });
-
-      });
-
-    });
-
   </script>
 
 </body>
